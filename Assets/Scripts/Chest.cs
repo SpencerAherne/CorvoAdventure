@@ -6,11 +6,11 @@ public class Chest : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
     public Sprite openChest;
-    public GameObject HP;
-    public GameObject DMG;
-    public GameObject ROF;
-    public GameObject PS;
-    public GameObject SPD;
+    public GameObject HPPowerUp;
+    public GameObject DMGPowerUp;
+    public GameObject RateOfFiePowerUp;
+    public GameObject ProjectileSpeedPowerUp;
+    public GameObject PlayerSpeedPowerUp;
 
     // Use this for initialization
     void Start ()
@@ -42,23 +42,23 @@ public class Chest : MonoBehaviour {
         int roll = Random.Range(0, 5);
         if (roll == 0)
         {
-            Instantiate(HP, -player.transform.position, gameObject.transform.rotation);
+            Instantiate(HPPowerUp, -player.transform.position, gameObject.transform.rotation);
         }
         if (roll == 1)
         {
-            Instantiate(DMG, -player.transform.position, gameObject.transform.rotation);
+            Instantiate(DMGPowerUp, -player.transform.position, gameObject.transform.rotation);
         }
         if (roll == 2)
         {
-            Instantiate(SPD, -player.transform.position, gameObject.transform.rotation);
+            Instantiate(PlayerSpeedPowerUp, -player.transform.position, gameObject.transform.rotation);
         }
         if (roll == 3)
         {
-            Instantiate(ROF, -player.transform.position, gameObject.transform.rotation);
+            Instantiate(RateOfFiePowerUp, -player.transform.position, gameObject.transform.rotation);
         }
         if (roll == 4)
         {
-            Instantiate(PS, -player.transform.position, gameObject.transform.rotation);
+            Instantiate(ProjectileSpeedPowerUp, -player.transform.position, gameObject.transform.rotation);
         }
     }
 }
