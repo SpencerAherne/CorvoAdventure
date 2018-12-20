@@ -9,8 +9,6 @@ public class TestingScript : MonoBehaviour
     int roomCount;
     List<Room> _rooms;
     List<GameObject> bossRoomPrefabs; //I don't get why this needs to be GameObjects when prefabs can be Rooms
-    List<Room> blankSides;
-    List<Room> nullSide;
     List<Room> roomsAdded;
     List<GameObject> roomPrefabs = new List<GameObject>();
 
@@ -18,26 +16,16 @@ public class TestingScript : MonoBehaviour
     private Room BuildMap(List<GameObject> preFabs)
     {
         _rooms = new List<Room>();
-        blankSides = new List<Room>();
-        nullSide = new List<Room>();
         roomsAdded = new List<Room>();
         bossRoomPrefabs = new List<GameObject>();
         roomCount = 0;
 
-
         var startingRoom = FindNextRoom(preFabs); // this will be a specific prefab starting room;
-
         //GenerateStartRoom(startingRoom);
-
-
         var currentRoom = startingRoom;
         currentRoom.XCoord = 0;
         currentRoom.YCoord = 0;
         _rooms.Add(startingRoom);
-
-
-        // TODO: Develop room linking algorithim.
-
 
         while (roomCount < 10)
         {
@@ -48,15 +36,97 @@ public class TestingScript : MonoBehaviour
             _rooms.AddRange(roomsAdded);
             roomsAdded.Clear();
 
-            IEnumerable<Room> query = _rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null);
-
-            //selects a random room from the list
-            var randomSide = new System.Random();
-            int sideIndex = randomSide.Next(query.Count());
-
-            currentRoom = query.Take(sideIndex) as Room;
+            ChangeCurrentRoom();
         }
+        SpawnBossRoom();
+        return startingRoom;
+    }
 
+
+    private Room FindNextRoom(List<GameObject> preFabs)
+    {
+        var random = new System.Random();
+        int index = random.Next(preFabs.Count);
+        Room nextRoom = preFabs[index].GetComponent<Room>();
+        preFabs.Remove(preFabs[index]);
+        return nextRoom;
+    }
+
+    private Room GenerateRoomExits(Room currentRoom)
+    {
+        int numberOfExits = UnityEngine.Random.Range(1, 3);
+        for (int i = 0; i < numberOfExits; i++)
+        {
+            if (currentRoom.FindNullSide() == null)
+            {
+                break; //should I return null instead of breaking?
+            }
+            var nextRoom = FindNextRoom(roomPrefabs);
+            nextRoom.XCoord = currentRoom.XCoord;
+            nextRoom.YCoord = currentRoom.YCoord;
+
+            switch (currentRoom.FindNullSide())
+            {
+                case "North":
+                    currentRoom.North = nextRoom;
+                    nextRoom.South = currentRoom;
+                    nextRoom.YCoord++;
+                    break;
+                case "South":
+                    currentRoom.South = nextRoom;
+                    nextRoom.North = currentRoom;
+                    nextRoom.YCoord--;
+                    break;
+                case "East":
+                    currentRoom.East = nextRoom;
+                    nextRoom.West = currentRoom;
+                    nextRoom.XCoord++;
+                    break;
+                case "West":
+                    currentRoom.West = nextRoom;
+                    nextRoom.East = currentRoom;
+                    nextRoom.XCoord--;
+                    break;
+            }
+            roomCount++;
+            roomsAdded.Add(nextRoom);
+        }
+        return currentRoom;
+    }
+
+    private void CheckAdjacency(Room currentRoom)
+    {
+        foreach (Room room in roomsAdded)
+        {
+            Room roomToEast = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
+            if (roomToEast != null && roomToEast != currentRoom)
+            {
+                room.East = roomToEast;
+                roomToEast.West = room;
+            }
+            Room roomToWest = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
+            if (roomToWest != null && roomToWest != currentRoom)
+            {
+                room.West = roomToWest;
+                roomToWest.East = room;
+            }
+            Room roomToNorth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
+            if (roomToNorth != null && roomToNorth != currentRoom)
+            {
+                room.North = roomToNorth;
+                roomToNorth.South = room;
+            }
+            Room roomToSouth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
+            if (roomToSouth != null && roomToSouth != currentRoom)
+            {
+                room.South = roomToSouth;
+                roomToSouth.North = room;
+            }
+        }
+    }
+
+    private void SpawnBossRoom()
+    {
         float xMax = 0;
         float yMax = 0;
         float xMin = 0;
@@ -78,7 +148,7 @@ public class TestingScript : MonoBehaviour
                 xMinRoom = room;
             }
 
-            if(room.Coordinates.y > yMax)
+            if (room.Coordinates.y > yMax)
             {
                 yMax = room.Coordinates.y;
                 yMaxRoom = room;
@@ -132,98 +202,20 @@ public class TestingScript : MonoBehaviour
                 break;
         }
 
-        return startingRoom;
     }
 
-    private Room FindNextRoom(List<GameObject> preFabs)
+    private Room ChangeCurrentRoom()
     {
-        // TODO: randomly pick a new room from the preFabs, setting any variables as required
-        // Consider removing already selected rooms, or room selected more than twice.
+        Room currentRoom;
 
+        IEnumerable<Room> query = _rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null);
 
-        //currently returns Room script from the prefab gameobject.
-        var random = new System.Random();
-        int index = random.Next(preFabs.Count);
-        Room nextRoom = preFabs[index].GetComponent<Room>();
-        preFabs.Remove(preFabs[index]);
-        return nextRoom;
-    }
+        //selects a random room from the list
+        var randomSide = new System.Random();
+        int sideIndex = randomSide.Next(query.Count());
 
-    private Room GenerateRoomExits(Room currentRoom)
-    {
-        int numberOfExits = UnityEngine.Random.Range(1, 3);
-        for (int i = 0; i < numberOfExits; i++)
-        {
-            if (currentRoom.FindNullSide() == null)
-            {
-                break;
-            }
-            var nextRoom = FindNextRoom(roomPrefabs);
-            nextRoom.XCoord = currentRoom.XCoord;
-            nextRoom.YCoord = currentRoom.YCoord;
+        currentRoom = query.Take(sideIndex) as Room;
 
-            switch (currentRoom.FindNullSide())
-            {
-                case "North":
-                    currentRoom.North = nextRoom;
-                    nextRoom.South = currentRoom;
-                    nextRoom.YCoord++;
-                    break;
-                case "South":
-                    currentRoom.South = nextRoom;
-                    nextRoom.North = currentRoom;
-                    nextRoom.YCoord--;
-                    break;
-                case "East":
-                    currentRoom.East = nextRoom;
-                    nextRoom.West = currentRoom;
-                    nextRoom.XCoord++;
-                    break;
-                case "West":
-                    currentRoom.West = nextRoom;
-                    nextRoom.East = currentRoom;
-                    nextRoom.XCoord--;
-                    break;
-            }
-            roomCount++;
-            roomsAdded.Add(nextRoom);
-        }
         return currentRoom;
-    }
-
-    private void CheckAdjacency(Room currentRoom)
-    {
-        foreach (Room room in roomsAdded)
-        {
-            Room roomToEast = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
-            if (roomToEast != null && roomToEast != currentRoom)
-            {
-                Room eastRoom = roomToEast;
-                room.East = eastRoom;
-                eastRoom.West = room;
-            }
-            Room roomToWest = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
-            if (roomToWest != null && roomToWest != currentRoom)
-            {
-                Room westRoom = roomToWest;
-                room.West = westRoom;
-                westRoom.East = room;
-            }
-            Room roomToNorth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
-            if (roomToNorth != null && roomToNorth != currentRoom)
-            {
-                Room northRoom = roomToNorth;
-                room.North = northRoom;
-                northRoom.South = room;
-            }
-            Room roomToSouth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
-            if (roomToSouth != null && roomToSouth != currentRoom)
-            {
-                Room southRoom = roomToSouth;
-                room.South = southRoom;
-                southRoom.North = room;
-            }
-        }
-
     }
 }
