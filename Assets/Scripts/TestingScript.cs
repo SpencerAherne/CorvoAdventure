@@ -19,6 +19,7 @@ public class TestingScript : MonoBehaviour
         blankSides = new List<Room>();
         nullSide = new List<Room>();
         roomsAdded = new List<Room>();
+        bossRoomPrefabs = new List<GameObject>();
         roomCount = 0;
 
 
@@ -132,95 +133,76 @@ public class TestingScript : MonoBehaviour
         float yMax = 0;
         float xMin = 0;
         float yMin = 0;
+        Room xMaxRoom = null;
+        Room xMinRoom = null;
+        Room yMaxRoom = null;
+        Room yMinRoom = null;
         foreach (Room room in _rooms)
         {
             if (room.Coordinates.x > xMax)
             {
                 xMax = room.Coordinates.x;
+                xMaxRoom = room;
             }
             else if (room.Coordinates.x < xMin)
             {
                 xMin = room.Coordinates.x;
+                xMinRoom = room;
             }
 
             if(room.Coordinates.y > yMax)
             {
                 yMax = room.Coordinates.y;
+                yMaxRoom = room;
             }
             else if (room.Coordinates.y < yMin)
             {
                 yMin = room.Coordinates.y;
+                yMinRoom = room;
             }
         }
         //Should I add the boss room to the rooms list?
         Room bossRoom = FindNextRoom(bossRoomPrefabs);
 
-        Vector2 highestRoom = new Vector2(xMax, yMax);
-        Vector2 lowestRoom = new Vector2(xMin, yMin);
-
-
-        List<Vector2> highOrLow = new List<Vector2>
+        List<float> highLowXY = new List<float>
         {
-            highestRoom,
-            lowestRoom
+            xMax,
+            xMin,
+            yMax,
+            yMin
         };
 
         var randomBossRoom = new System.Random();
-        int bossRoomIndex = randomBossRoom.Next(highOrLow.Count);
-        Vector2 bossRoomLoc = highOrLow[bossRoomIndex];
+        int bossRoomIndex = randomBossRoom.Next(highLowXY.Count);
+        float bossRoomLoc = highLowXY[bossRoomIndex];
 
-        List<float> high = new List<float>();
-        List<float> low = new List<float>();
-        high.Add(highestRoom.x);
-        high.Add(highestRoom.y);
-        low.Add(lowestRoom.x);
-        low.Add(lowestRoom.y);
-
-        if (highOrLow[bossRoomIndex] == highestRoom)
+        switch (bossRoomLoc.ToString())
         {
-
-            Room query = _rooms.Where(room => room.Coordinates == highestRoom) as Room;
-
-            var random = new System.Random();
-            int xOrY = random.Next(high.Count);
-
-            float direction = high[xOrY];
-            if (direction == highestRoom.x)
-            {
-                bossRoom.Coordinates = new Vector2(highestRoom.x + 1, highestRoom.y);
-                bossRoom.West = query;
-                query.East = bossRoom;
-            }
-            else
-            {
-                bossRoom.Coordinates = new Vector2(highestRoom.x, highestRoom.y + 1);
-                bossRoom.South = query;
-                query.North = bossRoom;
-            }
+            case "xMax":
+                bossRoom.West = xMaxRoom;
+                bossRoom.XCoord = xMaxRoom.XCoord + 1;
+                bossRoom.YCoord = xMaxRoom.YCoord;
+                xMaxRoom.East = bossRoom;
+                break;
+            case "xMin":
+                bossRoom.East = xMinRoom;
+                bossRoom.XCoord = xMinRoom.XCoord - 1;
+                bossRoom.YCoord = xMinRoom.YCoord;
+                xMinRoom.West = bossRoom;
+                break;
+            case "yMax":
+                bossRoom.South = yMaxRoom;
+                bossRoom.XCoord = yMaxRoom.XCoord;
+                bossRoom.YCoord = yMaxRoom.YCoord + 1;
+                yMaxRoom.North = bossRoom;
+                break;
+            case "yMin":
+                bossRoom.North = yMinRoom;
+                bossRoom.XCoord = yMinRoom.XCoord;
+                bossRoom.YCoord = yMinRoom.YCoord - 1;
+                yMinRoom.South = bossRoom;
+                break;
         }
-        else
-        {
-
-            Room query = _rooms.Where(room => room.Coordinates == lowestRoom) as Room;
-
-            var random = new System.Random();
-            int xOrY = random.Next(low.Count);
-
-            float direction = low[xOrY];
-            if (direction == lowestRoom.x)
-            {
-                bossRoom.Coordinates = new Vector2(highestRoom.x - 1, highestRoom.y);
-                bossRoom.East = query;
-                query.West = bossRoom;
-            }
-            else
-            {
-                bossRoom.Coordinates = new Vector2(highestRoom.x, highestRoom.y - 1);
-                bossRoom.North = query;
-                query.South = bossRoom;
-            }
-        }
-        
 
         return startingRoom;
     }
