@@ -76,6 +76,10 @@ public class Room : MonoBehaviour
                 x.Add(direction);
             }
         }
+        if (x.Count == 0)
+        {
+            return null;
+        }
         var random = new System.Random();
         int randomInt = random.Next(x.Count);
         nullSide = x[randomInt].ToString();
