@@ -8,7 +8,7 @@ public class TestingScript : MonoBehaviour
 {
     int roomCount;
     List<Room> _rooms;
-    List<GameObject> bossRoomPrefabs; //I don't get why this needs to be GameObjects when prefabs can be Rooms
+    List<GameObject> bossRoomPrefabs;
     List<Room> roomsAdded;
     List<GameObject> roomPrefabs = new List<GameObject>();
 
@@ -36,7 +36,7 @@ public class TestingScript : MonoBehaviour
             _rooms.AddRange(roomsAdded);
             roomsAdded.Clear();
 
-            ChangeCurrentRoom();
+            currentRoom = ChangeCurrentRoom();
         }
         SpawnBossRoom();
         return startingRoom;
@@ -59,7 +59,7 @@ public class TestingScript : MonoBehaviour
         {
             if (currentRoom.FindNullSide() == null)
             {
-                break; //should I return null instead of breaking?
+                return null;
             }
             var nextRoom = FindNextRoom(roomPrefabs);
             nextRoom.XCoord = currentRoom.XCoord;
@@ -159,20 +159,19 @@ public class TestingScript : MonoBehaviour
                 yMinRoom = room;
             }
         }
-        //Should I add the boss room to the rooms list?
         Room bossRoom = FindNextRoom(bossRoomPrefabs);
 
-        List<float> highLowXY = new List<float>
+        List<string> highLowXY = new List<string>
         {
-            xMax,
-            xMin,
-            yMax,
-            yMin
+            "xMax",
+            "xMin",
+            "yMax",
+            "yMin"
         };
 
         var randomBossRoom = new System.Random();
         int bossRoomIndex = randomBossRoom.Next(highLowXY.Count);
-        float bossRoomLoc = highLowXY[bossRoomIndex];
+        string bossRoomLoc = highLowXY[bossRoomIndex];
 
         switch (bossRoomLoc.ToString())
         {
@@ -201,7 +200,7 @@ public class TestingScript : MonoBehaviour
                 yMinRoom.South = bossRoom;
                 break;
         }
-
+        _rooms.Add(bossRoom);
     }
 
     private Room ChangeCurrentRoom()
