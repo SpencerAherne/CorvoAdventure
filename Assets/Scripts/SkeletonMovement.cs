@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkeletonMovement : MonoBehaviour
 {
-
+    SpriteRenderer spriteRenderer;
     Transform target;
     Rigidbody2D rb;
     float speed;
@@ -15,6 +15,7 @@ public class SkeletonMovement : MonoBehaviour
         target = Player.instance.transform;
         rb = GetComponent<Rigidbody2D>();
         speed = GetComponent<Skeleton>().Speed;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -24,6 +25,7 @@ public class SkeletonMovement : MonoBehaviour
         rb.MovePosition(Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime));
     }
 
+    //Right now skeltons are shaped weird when looking north/south. Need to fix.
     void EnemyMovement()
     {
         if (Mathf.Abs(target.position.x - transform.position.x) > Mathf.Abs(target.position.y - transform.position.y))

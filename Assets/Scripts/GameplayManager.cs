@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
+    #region Singleton
+    public static GameplayManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
