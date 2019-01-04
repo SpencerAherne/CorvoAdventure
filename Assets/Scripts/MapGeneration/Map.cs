@@ -11,19 +11,13 @@ public class Map : MonoBehaviour
     List<Room> _rooms;
     public GameObject spawnRoomPrefab;
     int roomCount;
-    List<GameObject> bossRoomPrefabs;
+    public List<GameObject> bossRoomPrefabs;
     List<Room> roomsAdded;
-    List<GameObject> roomPrefabs = new List<GameObject>();
-
-
-    private List<GameObject> preFabs;
+    public List<GameObject> preFabs;
 
     public Map()
     {
-        var preFabs = new List<GameObject>();
-
         var currentRoom = BuildMap(preFabs);
-
     }
 
     /// <summary>
@@ -79,7 +73,7 @@ public class Map : MonoBehaviour
             {
                 return null;
             }
-            var nextRoom = FindNextRoom(roomPrefabs);
+            var nextRoom = FindNextRoom(preFabs);
             nextRoom.XCoord = currentRoom.XCoord;
             nextRoom.YCoord = currentRoom.YCoord;
 

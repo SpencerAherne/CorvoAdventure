@@ -17,11 +17,13 @@ public class Door : MonoBehaviour
     {
         room = gameObject.GetComponentInParent<Room>();
         gameObject.transform.parent = room.transform;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
+        
+
         if (room.roomIsClear == true)
         {
             spriteRenderer.sprite = openDoor;

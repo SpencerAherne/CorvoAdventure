@@ -53,7 +53,25 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
+        if (North == null)
+        {
+            nDoor.SetActive(false);
+        }
 
+        if (South == null)
+        {
+            sDoor.SetActive(false);
+        }
+
+        if (East == null)
+        {
+            eDoor.SetActive(false);
+        }
+
+        if (West == null)
+        {
+            wDoor.SetActive(false);
+        }
     }
 
     private void Update()
