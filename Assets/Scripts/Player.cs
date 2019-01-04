@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float playerDamage;
     public float playerFireRate;
     public float playerProjectileSpeed;
+    private Room currentRoom;
 
     private void Awake()
     {

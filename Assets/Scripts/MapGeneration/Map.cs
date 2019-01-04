@@ -23,6 +23,7 @@ public class Map : MonoBehaviour
         var preFabs = new List<GameObject>();
 
         var currentRoom = BuildMap(preFabs);
+
     }
 
     /// <summary>
@@ -185,6 +186,27 @@ public class Map : MonoBehaviour
             "yMax",
             "yMin"
         };
+
+        if (xMaxRoom == null)
+        {
+            highLowXY.Remove("xMax");
+        }
+
+        if (xMinRoom == null)
+        {
+            highLowXY.Remove("xMin");
+        }
+
+        if (yMaxRoom == null)
+        {
+            highLowXY.Remove("yMax");
+        }
+
+        if (yMinRoom == null)
+        {
+            highLowXY.Remove("yMin");
+        }
+
 
         var randomBossRoom = new System.Random();
         int bossRoomIndex = randomBossRoom.Next(highLowXY.Count);
