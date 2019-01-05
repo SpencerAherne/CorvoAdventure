@@ -6,11 +6,23 @@ public class SouthDoor : MonoBehaviour
 {
     Room room;
     public GameObject spawn;
+    SpriteRenderer spriteRenderer;
+    public Material treasureRoomMat;
+
+    private void Awake()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         room = gameObject.GetComponentInParent<Room>();
+        if (room.South.treasureRoom == true)
+        {
+            spriteRenderer.material = treasureRoomMat;
+        }
+
     }
 
     // Update is called once per frame

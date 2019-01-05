@@ -6,10 +6,21 @@ public class NorthDoor : MonoBehaviour
 {
     Room room;
     public GameObject spawn;
+    SpriteRenderer spriteRenderer;
+    public Material treasureRoomMat;
+
+    private void Awake()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
         room = GetComponentInParent<Room>();
+        if (room.North.treasureRoom == true)
+        {
+            spriteRenderer.material = treasureRoomMat;
+        }
     }
 
     void Update()

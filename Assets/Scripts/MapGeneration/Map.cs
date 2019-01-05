@@ -173,32 +173,26 @@ public class Map : MonoBehaviour
         }
         Room bossRoom = FindNextRoom(bossRoomPrefabs);
 
-        List<string> highLowXY = new List<string>
-        {
-            "xMax",
-            "xMin",
-            "yMax",
-            "yMin"
-        };
+        List<string> highLowXY = new List<string>();
 
-        if (xMaxRoom == null)
+        if (xMaxRoom != null)
         {
-            highLowXY.Remove("xMax");
+            highLowXY.Add("xMax");
         }
 
-        if (xMinRoom == null)
+        if (xMinRoom != null)
         {
-            highLowXY.Remove("xMin");
+            highLowXY.Add("xMin");
         }
 
-        if (yMaxRoom == null)
+        if (yMaxRoom != null)
         {
-            highLowXY.Remove("yMax");
+            highLowXY.Add("yMax");
         }
 
-        if (yMinRoom == null)
+        if (yMinRoom != null)
         {
-            highLowXY.Remove("yMin");
+            highLowXY.Add("yMin");
         }
 
 

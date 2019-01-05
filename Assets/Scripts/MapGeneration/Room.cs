@@ -11,6 +11,8 @@ public class Room : MonoBehaviour
     public GameObject eDoor;
     public GameObject wDoor;
 
+    public Sprite openDoorSprite;
+
     // Know what's connected it
     // Needs to what objects (barrels, items, enemies)
 
@@ -20,14 +22,11 @@ public class Room : MonoBehaviour
     public Room West { get; set; }
     public List<Room> Directions { get; set; }
 
-
-
     //x,y coordinates to keep track of room locations reletive to eachother.
     public float XCoord { get; set; }
     public float YCoord { get; set; }
     public Vector2 Coordinates { get; set; }
 
-    public bool roomIsClear = false;
     public bool treasureRoom = false;
 
     [SerializeField]
@@ -78,7 +77,22 @@ public class Room : MonoBehaviour
     {
         if (enemiesInRoom.Count == 0)
         {
-            roomIsClear = true;
+            if (nDoor.activeInHierarchy)
+            {
+                nDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
+            if (sDoor.activeInHierarchy)
+            {
+                sDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
+            if (eDoor.activeInHierarchy)
+            {
+                eDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
+            if (wDoor.activeInHierarchy)
+            {
+                wDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
         }
     }
 

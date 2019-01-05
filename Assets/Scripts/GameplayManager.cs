@@ -24,6 +24,6 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //keep track of current room for many seperate components to check against.
+        //keep track of current room for other components to check against.
     }
 }

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 3798657153759674169}
+  treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
 --- !u!1 &972870946863797217
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 4705305322826843002}
+  treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
 --- !u!1 &4705305322826843002
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 6591238200158649979}
+  treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
 --- !u!1 &6273451307752068294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1167,7 @@ MonoBehaviour:
   sDoor: {fileID: 744122778016555795}
   eDoor: {fileID: 9111453212140953606}
   wDoor: {fileID: 4613541927965582532}
+  openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   roomIsClear: 0
   treasureRoom: 0
   objectsInRoom: []
@@ -1291,6 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 972870946863797217}
+  treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
 --- !u!1001 &3737751228040638210
 PrefabInstance:
   m_ObjectHideFlags: 0
