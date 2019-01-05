@@ -7,7 +7,6 @@ using System.Linq;
 
 public class Map : MonoBehaviour
 {
-
     List<Room> _rooms;
     public GameObject spawnRoomPrefab;
     int roomCount;
@@ -15,7 +14,7 @@ public class Map : MonoBehaviour
     List<Room> roomsAdded;
     public List<GameObject> preFabs;
 
-    public Map()
+    public Map()//how to call method to actually build map and give me starting room.
     {
         var currentRoom = BuildMap(preFabs);
     }
@@ -53,7 +52,6 @@ public class Map : MonoBehaviour
         SpawnBossRoom();
         return startingRoom;
     }
-
 
     private Room FindNextRoom(List<GameObject> preFabs)
     {

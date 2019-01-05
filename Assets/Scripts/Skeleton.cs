@@ -10,6 +10,12 @@ public class Skeleton : MonoBehaviour
     public float Speed;
     public float FireRate;
     public float ProjectileSpeed;
+    Room room;
+
+    private void Awake()
+    {
+        room = gameObject.GetComponentInParent<Room>();
+    }
 
     // Use this for initialization
     void Start ()
@@ -38,5 +44,10 @@ public class Skeleton : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        room.enemiesInRoom.Remove(gameObject);
     }
 }

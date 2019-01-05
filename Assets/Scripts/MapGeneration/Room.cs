@@ -30,11 +30,11 @@ public class Room : MonoBehaviour
     public bool treasureRoom = false;
 
     [SerializeField]
-    List<GameObject> objectsInRoom = new List<GameObject>();
+    List<GameObject> objectsInRoom = new List<GameObject>();//Don't think is needed.
     [SerializeField]
-    List<GameObject> itemsInRoom = new List<GameObject>();
+    List<GameObject> itemsInRoom = new List<GameObject>();//Don't think is needed.
     [SerializeField]
-    List<GameObject> enemiesInRoom = new List<GameObject>();
+    public List<GameObject> enemiesInRoom = new List<GameObject>();
 
     public Room()
     {
@@ -75,7 +75,7 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
-        if (enemiesInRoom.Count == 0)
+        if (enemiesInRoom.Count == 0 || enemiesInRoom == null)//Check to see if list is null, if no enemies spawn in room.
         {
             if (nDoor.activeInHierarchy)
             {

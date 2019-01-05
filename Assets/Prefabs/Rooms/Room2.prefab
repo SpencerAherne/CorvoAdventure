@@ -1168,12 +1168,11 @@ MonoBehaviour:
   eDoor: {fileID: 9111453212140953606}
   wDoor: {fileID: 4613541927965582532}
   openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
-  roomIsClear: 0
   treasureRoom: 0
   objectsInRoom: []
   itemsInRoom: []
   enemiesInRoom:
-  - {fileID: 0}
+  - {fileID: 3737105214715032386}
 --- !u!1 &9111453212140953606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1360,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 324e10bd6f2b1334ba78b56d952c715c, type: 3}
+--- !u!1 &3737105214715032386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1114443978972224, guid: 324e10bd6f2b1334ba78b56d952c715c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3737751228040638210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3733904157227821192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4036292066101130, guid: 324e10bd6f2b1334ba78b56d952c715c,
