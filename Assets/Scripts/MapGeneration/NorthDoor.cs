@@ -23,8 +23,9 @@ public class NorthDoor : MonoBehaviour
         room.gameObject.SetActive(false);
         room.North.gameObject.SetActive(true);
 
-        Player.instance.currentRoom = room.North; //or would this also go in room logic? Should this just be moving the player and that's it?
+        GameplayManager.instance.currentRoom = room.North;
 
-        Player.instance.transform.position = spawn.transform.position;
+        Player.instance.transform.position = GameplayManager.instance.currentRoom.sDoor.GetComponent<SouthDoor>().spawn.transform.position;
+
     }
 }

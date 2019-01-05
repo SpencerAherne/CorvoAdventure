@@ -13,6 +13,8 @@ public class GameplayManager : MonoBehaviour
     }
     #endregion
 
+    public Room currentRoom;
+
     // Start is called before the first frame update
     void Start()
     {

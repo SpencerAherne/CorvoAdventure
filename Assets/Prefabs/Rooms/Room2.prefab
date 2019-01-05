@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4186483472361987926}
   - component: {fileID: 1429626825357024215}
-  - component: {fileID: 2245734559302421426}
   - component: {fileID: 4405329653941194456}
+  - component: {fileID: 5638486239771340718}
   m_Layer: 0
   m_Name: SouthDoor
   m_TagString: Untagged
@@ -29,7 +29,8 @@ Transform:
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -4.8607, z: 0}
   m_LocalScale: {x: 0.20250499, y: 0.2155945, z: 0.20250499}
-  m_Children: []
+  m_Children:
+  - {fileID: 5802074703100499937}
   m_Father: {fileID: 2696512095490538779}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
@@ -81,20 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2245734559302421426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744122778016555795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca78ceda9d0e624cb223d07b57c45f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openDoor: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
-  spawnPoint: {fileID: 4186483472361987926}
 --- !u!61 &4405329653941194456
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -121,6 +108,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9190137, y: 4.2828226}
   m_EdgeRadius: 0
+--- !u!114 &5638486239771340718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744122778016555795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f070a0a24a706418fdcb36a2a63b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 3798657153759674169}
+--- !u!1 &972870946863797217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7853127415534825704}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7853127415534825704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972870946863797217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6260457513421797838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228717442794364542
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +583,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &3798657153759674169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5802074703100499937}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5802074703100499937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798657153759674169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4186483472361987926}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4613541927965582532
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,8 +623,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5780867038370403807}
   - component: {fileID: 2240741211624379681}
-  - component: {fileID: 1030034129274793326}
   - component: {fileID: 5138310279759492374}
+  - component: {fileID: 1911016076214077693}
   m_Layer: 0
   m_Name: WestDoor
   m_TagString: Untagged
@@ -582,7 +642,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -9.05982, y: 0, z: 0}
   m_LocalScale: {x: 0.20250499, y: 0.21602443, z: 0.20250499}
-  m_Children: []
+  m_Children:
+  - {fileID: 9172755973922254605}
   m_Father: {fileID: 2696512095490538779}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -634,20 +695,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1030034129274793326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4613541927965582532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca78ceda9d0e624cb223d07b57c45f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openDoor: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
-  spawnPoint: {fileID: 5780867038370403807}
 --- !u!61 &5138310279759492374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -674,6 +721,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9190137, y: 4.2828226}
   m_EdgeRadius: 0
+--- !u!114 &1911016076214077693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613541927965582532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bb1fbcd6f1ff74bbfa3d1237aff99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 4705305322826843002}
+--- !u!1 &4705305322826843002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9172755973922254605}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9172755973922254605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705305322826843002}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalScale: {x: 0.9374063, y: 1.0646486, z: 1.000025}
+  m_Children: []
+  m_Father: {fileID: 5780867038370403807}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6128015829657496228
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,8 +774,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8015212546087221135}
   - component: {fileID: 3306110548379554964}
-  - component: {fileID: 5284406572762700141}
   - component: {fileID: 4736231848234537716}
+  - component: {fileID: 36754530579238665}
   m_Layer: 0
   m_Name: NorthDoor
   m_TagString: Untagged
@@ -756,20 +846,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5284406572762700141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6128015829657496228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca78ceda9d0e624cb223d07b57c45f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openDoor: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
-  spawnPoint: {fileID: 8015212546087221135}
 --- !u!61 &4736231848234537716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -796,6 +872,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9190137, y: 4.2828226}
   m_EdgeRadius: 0
+--- !u!114 &36754530579238665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128015829657496228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9a7e92c5560804aa1840dacc2dc589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 6591238200158649979}
 --- !u!1 &6273451307752068294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,8 +1180,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6260457513421797838}
   - component: {fileID: 568042878423828439}
-  - component: {fileID: 6591190745665875879}
   - component: {fileID: 3050083366427817058}
+  - component: {fileID: 5165573851141887258}
   m_Layer: 0
   m_Name: EastDoor
   m_TagString: Untagged
@@ -1110,7 +1199,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 9.05982, y: 0, z: 0}
   m_LocalScale: {x: 0.20250499, y: 0.2160244, z: 0.20250499}
-  m_Children: []
+  m_Children:
+  - {fileID: 7853127415534825704}
   m_Father: {fileID: 2696512095490538779}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
@@ -1162,20 +1252,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6591190745665875879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9111453212140953606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca78ceda9d0e624cb223d07b57c45f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openDoor: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
-  spawnPoint: {fileID: 6260457513421797838}
 --- !u!61 &3050083366427817058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1202,6 +1278,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9190137, y: 4.2828226}
   m_EdgeRadius: 0
+--- !u!114 &5165573851141887258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111453212140953606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fdb89883162c8488b78e71af6227ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 972870946863797217}
 --- !u!1001 &3737751228040638210
 PrefabInstance:
   m_ObjectHideFlags: 0
