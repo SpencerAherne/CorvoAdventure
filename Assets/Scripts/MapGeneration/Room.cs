@@ -36,6 +36,8 @@ public class Room : MonoBehaviour
     [SerializeField]
     public List<GameObject> enemiesInRoom = new List<GameObject>();
 
+    LootDropRolls loot;
+
     public Room()
     {
 
@@ -48,6 +50,7 @@ public class Room : MonoBehaviour
         Directions.Add(East);
         Directions.Add(West);
         Coordinates = new Vector2(XCoord, YCoord);
+        loot = new LootDropRolls();
     }
 
     private void Start()
@@ -75,7 +78,7 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
-        if (enemiesInRoom.Count == 0 || enemiesInRoom == null)//Check to see if list is null, if no enemies spawn in room.
+        if (enemiesInRoom.Count == 0 || enemiesInRoom == null)//Does this keep setting the sprite, if so how to only call once?
         {
             if (nDoor.activeInHierarchy)
             {
@@ -92,6 +95,11 @@ public class Room : MonoBehaviour
             if (wDoor.activeInHierarchy)
             {
                 wDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+            }
+
+            if (enemiesInRoom.Count == 0)//want this to only happen when room is cleared by killing enemies, not on empty rooms.
+            {
+                loot.RoomClearLootRoll();
             }
         }
     }
