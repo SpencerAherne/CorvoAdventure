@@ -3,7 +3,12 @@ guid: 6dae912dd722a054ba4df6af3240f5ec
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nDoor: {instanceID: 0}
+  - sDoor: {instanceID: 0}
+  - eDoor: {instanceID: 0}
+  - wDoor: {instanceID: 0}
+  - openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -9,12 +9,15 @@ public class Destroyable : MonoBehaviour
     public float objCurrentHealth;
     LootDropRolls loot;
 
+    private void Awake()
+    {
+        loot = GameObject.Find("GamePlayManager").GetComponent<LootDropRolls>();
+    }
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         objCurrentHealth = objMaxHealth;
-        loot = new LootDropRolls();
     }
 	
 	// Update is called once per frame
@@ -37,7 +40,7 @@ public class Destroyable : MonoBehaviour
 
     private void OnDisable()
     {
-        loot.DestroyableLootRoll();
+        loot.DestroyableLootRoll(gameObject);
     }
 
 }

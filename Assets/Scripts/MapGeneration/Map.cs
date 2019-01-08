@@ -28,7 +28,6 @@ public class Map : MonoBehaviour
     {
         _rooms = new List<Room>();
         roomsAdded = new List<Room>();
-        bossRoomPrefabs = new List<GameObject>();
         Room spawnRoom = spawnRoomPrefab.GetComponent<Room>();
         roomCount = 0;
 

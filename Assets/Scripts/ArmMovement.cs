@@ -14,7 +14,7 @@ public class ArmMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        instance = GameObject.Find("GameManager").GetComponent<SpellProjectile>();
+        instance = GameObject.Find("GamePlayManager").GetComponent<SpellProjectile>();
 	}
 	
     void FixedUpdate()

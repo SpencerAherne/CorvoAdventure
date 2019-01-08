@@ -30,7 +30,7 @@ public class LootDropRolls : MonoBehaviour
         
     }
 
-    public void DestroyableLootRoll()
+    public void DestroyableLootRoll(GameObject gameObject)
     {
         int roll = Random.Range(1, 101);
         if (roll <= 5)

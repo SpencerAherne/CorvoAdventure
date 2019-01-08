@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections.ObjectModel;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
@@ -34,7 +36,7 @@ public class Room : MonoBehaviour
     [SerializeField]
     List<GameObject> itemsInRoom = new List<GameObject>();//Don't think is needed.
     [SerializeField]
-    public List<GameObject> enemiesInRoom = new List<GameObject>();
+    public ObservableCollection<GameObject> enemiesInRoom = new ObservableCollection<GameObject>();
 
     LootDropRolls loot;
 
@@ -80,24 +82,24 @@ public class Room : MonoBehaviour
     {
         if (enemiesInRoom.Count == 0 || enemiesInRoom == null)//Does this keep setting the sprite, if so how to only call once?
         {
-            if (nDoor.activeInHierarchy)
+            if (nDoor.activeInHierarchy && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)//check if sprite is already open.
             {
                 nDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
             }
-            if (sDoor.activeInHierarchy)
+            if (sDoor.activeInHierarchy && sDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 sDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
             }
-            if (eDoor.activeInHierarchy)
+            if (eDoor.activeInHierarchy && eDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 eDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
             }
-            if (wDoor.activeInHierarchy)
+            if (wDoor.activeInHierarchy && wDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 wDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
             }
 
-            if (enemiesInRoom.Count == 0)//want this to only happen when room is cleared by killing enemies, not on empty rooms.
+            if (enemiesInRoom.Count == 0)//Events
             {
                 loot.RoomClearLootRoll();
             }
@@ -125,4 +127,5 @@ public class Room : MonoBehaviour
         nullSide = x[randomInt].ToString();
         return nullSide;
     }
+
 }
