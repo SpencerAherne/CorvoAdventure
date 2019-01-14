@@ -90,4 +90,14 @@ public class LootDropRolls : MonoBehaviour
         }
 
     }
+
+    public void SkeletonLootRoll()
+    {
+        //figure out what, if anything, skeletons should drop on death/disable
+    }
+
+    public void GoblinLootRoll()
+    {
+        //figure out what, if anything, goblins should drop on death/disable
+    }
 }

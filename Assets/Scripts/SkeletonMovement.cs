@@ -14,7 +14,7 @@ public class SkeletonMovement : MonoBehaviour
     {
         target = Player.instance.transform;
         rb = GetComponent<Rigidbody2D>();
-        speed = GetComponent<Skeleton>().Speed;
+        speed = GetComponent<Skeleton>().speed;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 	
