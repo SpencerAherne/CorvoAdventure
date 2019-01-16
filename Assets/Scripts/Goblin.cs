@@ -19,6 +19,7 @@ public class Goblin : MonoBehaviour
     bool isAttacking;
     float nextShot;
     public GameObject spawn;
+    float projectileSpeedScale = 0.025f;
 
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class Goblin : MonoBehaviour
 
     }
 
+    //see if using quaternions would make this work better, and if so how.
     void Facing()
     {
         if (Mathf.Abs(target.position.x - transform.position.x) > Mathf.Abs(target.position.y - transform.position.y))
@@ -112,14 +114,34 @@ public class Goblin : MonoBehaviour
     {
         Vector2 spawnPosition = spawn.transform.position;
         Quaternion spawnRotation = spawn.transform.rotation;
+        Vector2 attackAngle = new Vector2(1.5f, 1.5f);
 
         if (Physics2D.Linecast(transform.position, target.position, toHit) == false && Time.time > nextShot)
         {
             nextShot = Time.time + (1/rateOfFire);
             isAttacking = true;
-            GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
+            //find angle between goblin and player
+            Vector2 targetDir = target.position - transform.position;
+            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 180f; //not sure if this - 180f is right/necessary.
+            //I think this can be used to rotate the projectile towards the player.
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            //instead of a cone of attack, maybe just a circle around the player/target and choose a random point in the circle to hit.
+            //Random.InsideUnitCircle would do exactly this if I read it correctly.
+
+            //Random.Range(targetDir - attackAngle, targetDir + attackAngle);
+
             //figure out how to wait some time, since attack is slow.
-            
+
+            #region bulletspawn
+            /*
+            GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
+            clone.transform.position = spawnPosition;
+            clone.transform.rotation = spawnRotation;
+            clone.SetActive(true);
+            clone.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(projectileSpeedScale * projectileSpeed, 0));
+            */
+            #endregion
 
             isAttacking = false;
         }
