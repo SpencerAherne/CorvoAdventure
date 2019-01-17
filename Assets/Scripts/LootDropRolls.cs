@@ -9,6 +9,7 @@ public class LootDropRolls : MonoBehaviour
     GameObject Potion;
     GameObject Chest;
 
+    //singleton or reference in gameplaymanager
 
     private void Awake()
     {
@@ -89,6 +90,11 @@ public class LootDropRolls : MonoBehaviour
             Debug.Log("RoomLoot rolled correctly.");
         }
 
+    }
+
+    public void ChestLootRoll()
+    {
+        //do I want this?
     }
 
     public void SkeletonLootRoll()

@@ -24,7 +24,6 @@ public class SpellProjectile : MonoBehaviour {
 
     private void Update()
     {
-        
         fireRate = Player.instance.playerFireRate;
         damage = Player.instance.playerDamage;
         speed = Player.instance.playerProjectileSpeed;

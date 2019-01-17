@@ -78,7 +78,6 @@ public class Goblin : MonoBehaviour
         {
             Debug.Log($"{Physics2D.Linecast(transform.position, target.position, toHit).collider} is between {gameObject} and {target}");
 
-
             if (Mathf.Abs(target.position.x - transform.position.x) > Mathf.Abs(target.position.y - transform.position.y))
             {
                 if (target.position.x > transform.position.x)
@@ -132,6 +131,7 @@ public class Goblin : MonoBehaviour
             //Random.Range(targetDir - attackAngle, targetDir + attackAngle);
 
             //figure out how to wait some time, since attack is slow.
+            //calculate frame/time delay self in code.
 
             #region bulletspawn
             /*
