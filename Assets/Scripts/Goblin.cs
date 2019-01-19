@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Goblin : MonoBehaviour
 {
 
@@ -125,23 +126,22 @@ public class Goblin : MonoBehaviour
             //I think this can be used to rotate the projectile towards the player.
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            //instead of a cone of attack, maybe just a circle around the player/target and choose a random point in the circle to hit.
-            //Random.InsideUnitCircle would do exactly this if I read it correctly.
-
-            //Random.Range(targetDir - attackAngle, targetDir + attackAngle);
+            // use Vector2.Perpendicular(targetDir) as direction of ray, not end point of line, unless I can figure out how to adjust it.
+            Ray2D ray = new Ray2D(target.position, Vector2.Perpendicular(targetDir));
+            Vector2 maxHit = ray.GetPoint(1f);
+            Vector2 minHit = ray.GetPoint(-1f);
+            Vector2 attackArc = maxHit - minHit;
+            Vector2 attackPoint = minHit + Random.value * attackArc;
 
             //figure out how to wait some time, since attack is slow.
             //calculate frame/time delay self in code.
 
-            #region bulletspawn
-            /*
             GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = spawnPosition;
             clone.transform.rotation = spawnRotation;
             clone.SetActive(true);
             clone.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(projectileSpeedScale * projectileSpeed, 0));
-            */
-            #endregion
+
 
             isAttacking = false;
         }
