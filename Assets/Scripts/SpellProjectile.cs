@@ -12,7 +12,7 @@ public class SpellProjectile : MonoBehaviour {
     float speed;
     Vector3 spawnPosition;
     Quaternion spawnRotation;
-    Vector2 movement;
+    Vector2 aim;
 
     private float projectileSpeedScale = 0.025f;
 
@@ -36,9 +36,9 @@ public class SpellProjectile : MonoBehaviour {
 
     public void Fire()
     {
-        movement = new Vector2(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical"));
+        aim = new Vector2(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical"));
 
-        if ((movement.y != 0 && Time.time > nextShot) || (movement.x != 0 && Time.time > nextShot))
+        if ((aim.y != 0 && Time.time > nextShot) || (aim.x != 0 && Time.time > nextShot))
         {
             nextShot = Time.time + (1f / fireRate);
             Vector3 spawnPosition = spawnLocation.transform.position;

@@ -578,12 +578,16 @@ MonoBehaviour:
   maxHealth: 1
   speed: 1
   damage: 0
-  rateOfFire: 0
-  projectileSpeed: 0
+  rateOfFire: 1
+  projectileSpeed: 10
   toHit:
     serializedVersion: 2
-    m_Bits: 2355
+    m_Bits: 2099
   spawn: {fileID: 1814653200}
+  projectileSpeedScale: 1
+  chargeTime: 0
+  attackTime: 3
+  constant: 5
 --- !u!1 &621702234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814653200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.25, y: 0, z: 0}
+  m_LocalPosition: {x: -4.78, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 565641501}

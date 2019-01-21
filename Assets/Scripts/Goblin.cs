@@ -20,7 +20,11 @@ public class Goblin : MonoBehaviour
     bool isAttacking;
     float nextShot;
     public GameObject spawn;
-    float projectileSpeedScale = 0.025f;
+    public float projectileSpeedScale = 1f;
+
+    public float chargeTime;
+    public float attackTime;
+    public float constant;
 
 
     // Start is called before the first frame update
@@ -40,7 +44,11 @@ public class Goblin : MonoBehaviour
             Facing();
             Movement();
         }
+    }
 
+    private void FixedUpdate()
+    {
+        Attack();
     }
 
     //see if using quaternions would make this work better, and if so how.
@@ -114,7 +122,6 @@ public class Goblin : MonoBehaviour
     {
         Vector2 spawnPosition = spawn.transform.position;
         Quaternion spawnRotation = spawn.transform.rotation;
-        Vector2 attackAngle = new Vector2(1.5f, 1.5f);
 
         if (Physics2D.Linecast(transform.position, target.position, toHit) == false && Time.time > nextShot)
         {
@@ -132,16 +139,24 @@ public class Goblin : MonoBehaviour
             Vector2 minHit = ray.GetPoint(-1f);
             Vector2 attackArc = maxHit - minHit;
             Vector2 attackPoint = minHit + Random.value * attackArc;
+            float attackAngle = Mathf.Atan2(attackPoint.x, attackPoint.y) * Mathf.Rad2Deg; //add or subtract float to correct for rotation.
 
             //figure out how to wait some time, since attack is slow.
             //calculate frame/time delay self in code.
+            while (chargeTime <= attackTime)
+            {
+                chargeTime++;
+            }
 
             GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = spawnPosition;
-            clone.transform.rotation = spawnRotation;
+            //clone.transform.rotation = Quaternion.LookRotation(attackPoint);
+            //clone.transform.rotation = spawnRotation;
+            //clone.transform.LookAt(attackPoint);
+            //clone.transform.rotation = Quaternion.Euler(attackAngle, attackAngle + 90, attackAngle);
+            //clone.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.back);
             clone.SetActive(true);
-            clone.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(projectileSpeedScale * projectileSpeed, 0));
-
+            clone.GetComponent<Rigidbody2D>().velocity = (attackPoint - (Vector2)clone.transform.position).normalized * constant;
 
             isAttacking = false;
         }
