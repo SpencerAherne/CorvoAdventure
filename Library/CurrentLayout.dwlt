@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 681, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 118
+  controlID: 128
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -384,7 +384,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4efaffffb2fbffff9c290000ac290000
+      m_ExpandedIDs: b2fbffffac290000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -440,9 +440,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.327578, y: -0.030384317, z: -2.7433214}
+    m_Target: {x: 0.11427844, y: 0.10017289, z: -0.099609375}
     speed: 2
-    m_Value: {x: 0.327578, y: -0.030384317, z: -2.7433214}
+    m_Value: {x: 0.11427844, y: 0.10017289, z: -0.099609375}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -474,15 +474,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: -1}
   m_Size:
-    m_Target: 11.059942
+    m_Target: 10.960209
     speed: 2
-    m_Value: 11.059942
+    m_Value: 10.960209
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: -0.0034478086, y: -0.98824215, z: 0.15118787, w: -0.022536537}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -569,19 +569,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Sprites
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Sprites
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\frona\Documents\GitHubStuff\CorvoAdventure
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a00a0000
-    m_LastClickedID: 2720
+    m_SelectedIDs: fe0b0000
+    m_LastClickedID: 3070
     m_ExpandedIDs: 00000000ea090000a00a0000d40b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 40608
+  m_LastSelectedObjectID: 10740
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

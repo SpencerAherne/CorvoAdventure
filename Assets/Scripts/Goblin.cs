@@ -19,7 +19,6 @@ public class Goblin : MonoBehaviour
     public LayerMask toHit;
     bool isAttacking;
     float nextShot;
-    public GameObject spawn;
     public float projectileSpeedScale = 1f;
 
     public float chargeTime;
@@ -120,8 +119,6 @@ public class Goblin : MonoBehaviour
 
     void Attack()
     {
-        Vector2 spawnPosition = spawn.transform.position;
-        Quaternion spawnRotation = spawn.transform.rotation;
 
         if (Physics2D.Linecast(transform.position, target.position, toHit) == false && Time.time > nextShot)
         {
@@ -139,7 +136,7 @@ public class Goblin : MonoBehaviour
             Vector2 minHit = ray.GetPoint(-1f);
             Vector2 attackArc = maxHit - minHit;
             Vector2 attackPoint = minHit + Random.value * attackArc;
-            float attackAngle = Mathf.Atan2(attackPoint.x, attackPoint.y) * Mathf.Rad2Deg; //add or subtract float to correct for rotation.
+            float attackAngle = Mathf.Atan2(attackPoint.y, attackPoint.x) * Mathf.Rad2Deg; //add or subtract float to correct for rotation.
 
             //figure out how to wait some time, since attack is slow.
             //calculate frame/time delay self in code.
@@ -149,12 +146,13 @@ public class Goblin : MonoBehaviour
             }
 
             GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = spawnPosition;
+            clone.transform.position = transform.position;
+            Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
             //clone.transform.rotation = Quaternion.LookRotation(attackPoint);
             //clone.transform.rotation = spawnRotation;
             //clone.transform.LookAt(attackPoint);
             //clone.transform.rotation = Quaternion.Euler(attackAngle, attackAngle + 90, attackAngle);
-            //clone.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.back);
+            clone.transform.localRotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
             clone.SetActive(true);
             clone.GetComponent<Rigidbody2D>().velocity = (attackPoint - (Vector2)clone.transform.position).normalized * constant;
 
