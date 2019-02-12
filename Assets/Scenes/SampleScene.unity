@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 315825147}
   - component: {fileID: 315825146}
   m_Layer: 0
-  m_Name: ArrowPool
+  m_Name: StonePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114642127abe7aa4d97da6673947057e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 2336240452477246844, guid: 4e8f1198b123e29409d7cf28d2b8647f,
+  pooledObject: {fileID: 6596410858919419046, guid: 2d30410c7b05e094387a865470abdbe7,
     type: 3}
   pooledAmount: 5
   willGrow: 1

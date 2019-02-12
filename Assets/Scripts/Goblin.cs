@@ -133,9 +133,6 @@ public class Goblin : MonoBehaviour
             isAttacking = true;
             //find angle between goblin and player
             Vector2 targetDir = target.position - transform.position;
-            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 180f; //not sure if this - 180f is right/necessary.
-            //I think this can be used to rotate the projectile towards the player.
-            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // use Vector2.Perpendicular(targetDir) as direction of ray, not end point of line, unless I can figure out how to adjust it.
             Ray2D ray = new Ray2D(target.position, Vector2.Perpendicular(targetDir));
@@ -155,19 +152,11 @@ public class Goblin : MonoBehaviour
                 chargeTime++;
             }
 
-            //Quaternion rotation = Quaternion.LookRotation(transform.position - target.position);
-            GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject clone = GameObject.Find("StonePool").GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = transform.position;
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-            //clone.transform.rotation = Quaternion.LookRotation(attackPoint);
-            //clone.transform.rotation = spawnRotation;
-            //clone.transform.LookAt(attackPoint);
-            //clone.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5f);
+            clone.transform.rotation = Quaternion.LookRotation(attackPoint);
             clone.transform.rotation = Quaternion.Euler(0f, 0f, attackAngle + offset);
-            //clone.transform.rotation = Quaternion.Euler(0, 0 , attackAngle);
-            //clone.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
-            //clone.transform.Rotate(Vector3.forward, attackAngle, Space.World);
-            //clone.transform.rotation = Quaternion.Euler(0, 0, attackAngle);
             clone.SetActive(true);
             clone.GetComponent<Rigidbody2D>().velocity = (attackPoint - (Vector2)clone.transform.position).normalized * constant;
 
