@@ -8,7 +8,6 @@ public class TestingScript : MonoBehaviour
 {
 
     Transform target;
-    public LayerMask toHit;
 
     private void Awake()
     {

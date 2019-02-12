@@ -24,7 +24,11 @@ public class Goblin : MonoBehaviour
     public float chargeTime;
     public float attackTime;
     public float constant;
+    public float offset;
 
+    public Transform player;
+
+    Quaternion rotation;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,9 @@ public class Goblin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rotation = Quaternion.LookRotation(transform.position - target.position);
+
+
         if (isAttacking == false)
         {
             Facing();
@@ -135,8 +142,11 @@ public class Goblin : MonoBehaviour
             Vector2 maxHit = ray.GetPoint(1f);
             Vector2 minHit = ray.GetPoint(-1f);
             Vector2 attackArc = maxHit - minHit;
+            Debug.Log($"attackArc = {attackArc}");
             Vector2 attackPoint = minHit + Random.value * attackArc;
+            //order of x,y matter for Atan2, not sure if that's my problem
             float attackAngle = Mathf.Atan2(attackPoint.y, attackPoint.x) * Mathf.Rad2Deg; //add or subtract float to correct for rotation.
+            Debug.Log($"attackAngle is {attackAngle}");
 
             //figure out how to wait some time, since attack is slow.
             //calculate frame/time delay self in code.
@@ -145,16 +155,23 @@ public class Goblin : MonoBehaviour
                 chargeTime++;
             }
 
+            //Quaternion rotation = Quaternion.LookRotation(transform.position - target.position);
             GameObject clone = GameObject.Find("ArrowPool").GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = transform.position;
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
             //clone.transform.rotation = Quaternion.LookRotation(attackPoint);
             //clone.transform.rotation = spawnRotation;
             //clone.transform.LookAt(attackPoint);
-            //clone.transform.rotation = Quaternion.Euler(attackAngle, attackAngle + 90, attackAngle);
-            clone.transform.localRotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
+            //clone.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5f);
+            clone.transform.rotation = Quaternion.Euler(0f, 0f, attackAngle + offset);
+            //clone.transform.rotation = Quaternion.Euler(0, 0 , attackAngle);
+            //clone.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
+            //clone.transform.Rotate(Vector3.forward, attackAngle, Space.World);
+            //clone.transform.rotation = Quaternion.Euler(0, 0, attackAngle);
             clone.SetActive(true);
             clone.GetComponent<Rigidbody2D>().velocity = (attackPoint - (Vector2)clone.transform.position).normalized * constant;
+
+            Debug.DrawLine(clone.transform.position, attackPoint, Color.magenta, 5);
 
             isAttacking = false;
         }
