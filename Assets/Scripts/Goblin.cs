@@ -36,7 +36,6 @@ public class Goblin : MonoBehaviour
 
     public Transform player;
 
-    Quaternion rotation;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +49,6 @@ public class Goblin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotation = Quaternion.LookRotation(transform.position - target.position);
-
 
         if (isAttacking == false)
         {
@@ -134,7 +131,7 @@ public class Goblin : MonoBehaviour
 
     void Attack()
     {
-
+        //make line of set check on a timer of sorts, so that the enemy requires a second or two of line of sight, rather than just a frame.
         if (Physics2D.Linecast(transform.position, target.position, toHit) == false && Time.time > nextShot)
         {
             nextShot = Time.time + (1/rateOfFire);
