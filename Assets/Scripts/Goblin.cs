@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class Goblin : MonoBehaviour
 {
+    #region Singleton
+    public static Goblin instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
 
     public float maxHealth;
     float curHealth;
@@ -163,6 +171,15 @@ public class Goblin : MonoBehaviour
             Debug.DrawLine(clone.transform.position, attackPoint, Color.magenta, 5);
 
             isAttacking = false;
+        }
+    }
+
+    public void DamageGoblin(float damage)
+    {
+        curHealth -= damage;
+        if (curHealth <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 

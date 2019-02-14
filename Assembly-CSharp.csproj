@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArmMovement.cs" />
-    <Compile Include="Assets\Scripts\Arrow.cs" />
     <Compile Include="Assets\Scripts\Chest.cs" />
     <Compile Include="Assets\Scripts\Destroyable.cs" />
     <Compile Include="Assets\Scripts\DestroyProjectile.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="Assets\Scripts\Skeleton.cs" />
     <Compile Include="Assets\Scripts\SkeletonMovement.cs" />
     <Compile Include="Assets\Scripts\SpellProjectile.cs" />
+    <Compile Include="Assets\Scripts\StoneProjectile.cs" />
     <Compile Include="Assets\Scripts\TestingScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/frona/Documents/GitHubStuff/CorvoAdventure/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
