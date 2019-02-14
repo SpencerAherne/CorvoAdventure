@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Skeleton : MonoBehaviour
 {
-    public float MaxHealth;
-    float CurrentHealth;
-    public float Damage;
-    public float Speed;
-    public float FireRate;
-    public float ProjectileSpeed;
+    public float maxHealth;
+    float currentHealth;
+    public float damage;
+    public float speed;
     Room room;
 
     private void Awake()
     {
-        room = gameObject.GetComponentInParent<Room>();
+
     }
 
     // Use this for initialization
     void Start ()
     {
-        CurrentHealth = MaxHealth;
+        room = gameObject.GetComponentInParent<Room>();
+
+        currentHealth = maxHealth;
 	}
 
 	// Update is called once per frame
@@ -33,14 +33,14 @@ public class Skeleton : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Player.instance.DamagePlayer(Damage);
+            Player.instance.DamagePlayer(damage);
         }
     }
 
     public void DamageSkeleton(float damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
         }

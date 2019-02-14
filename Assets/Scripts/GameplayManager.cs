@@ -26,4 +26,5 @@ public class GameplayManager : MonoBehaviour
     {
         //keep track of current room for other components to check against.
     }
+
 }

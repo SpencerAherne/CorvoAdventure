@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212805918409679026}
   - component: {fileID: 61850802003882568}
   - component: {fileID: 114578130680224750}
+  - component: {fileID: 2991147397728149280}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Destroyable
@@ -122,3 +123,24 @@ MonoBehaviour:
   damageFromProjectile: 1
   objMaxHealth: 10
   objCurrentHealth: 0
+--- !u!50 &2991147397728149280
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735855676503990}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000000
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

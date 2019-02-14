@@ -9,6 +9,7 @@ public class LootDropRolls : MonoBehaviour
     GameObject Potion;
     GameObject Chest;
 
+    //singleton or reference in gameplaymanager
 
     private void Awake()
     {
@@ -89,5 +90,20 @@ public class LootDropRolls : MonoBehaviour
             Debug.Log("RoomLoot rolled correctly.");
         }
 
+    }
+
+    public void ChestLootRoll()
+    {
+        //do I want this?
+    }
+
+    public void SkeletonLootRoll()
+    {
+        //figure out what, if anything, skeletons should drop on death/disable
+    }
+
+    public void GoblinLootRoll()
+    {
+        //figure out what, if anything, goblins should drop on death/disable
     }
 }
