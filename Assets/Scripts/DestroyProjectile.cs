@@ -33,30 +33,32 @@ public class DestroyProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        switch (collision.gameObject.tag)
         {
-            if (collision.gameObject.name == "Skeleton")
-            {
-                collision.gameObject.GetComponent<Skeleton>().DamageSkeleton(Player.instance.playerDamage);
-                gameObject.SetActive(false);
-            }
-            //this is if instead of else as I plan on making at least one more enemy. Not sure if I should make else until I make the other enemies or if this is fine.
-            if (collision.gameObject.name == "Goblin")
-            {
-                collision.gameObject.GetComponent<Goblin>().DamageGoblin(Player.instance.playerDamage);
-            }
-            
+            case "Skelton":
+                {
+                    collision.gameObject.GetComponent<Skeleton>().DamageSkeleton(Player.instance.playerDamage);
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "Goblin":
+                {
+                    collision.gameObject.GetComponent<Goblin>().DamageGoblin(Player.instance.playerDamage);
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "Destroyable":
+                {
+                    collision.gameObject.GetComponent<Destroyable>().DamageObject(Player.instance.playerDamage);
+                    gameObject.SetActive(false);
+                }
+                break;
+            default:
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
         }
-        else if (collision.gameObject.tag == "Destroyable")
-        {
-            collision.gameObject.GetComponent<Destroyable>().DamageObject(Player.instance.playerDamage);
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-        
     }
 
 }

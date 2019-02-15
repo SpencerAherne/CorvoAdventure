@@ -42,13 +42,10 @@ public class PickUpItems : MonoBehaviour {
                 break;
 
             case "Gem":
-                if (gameObject.tag == "Gem")
+                if (collision.gameObject.tag == "Player")
                 {
-                    if (collision.gameObject.tag == "Player")
-                    {
-                        Player.instance.gemCount++;
-                        gameObject.SetActive(false);
-                    }
+                    Player.instance.gemCount++;
+                    gameObject.SetActive(false);
                 }
                 break;
         }

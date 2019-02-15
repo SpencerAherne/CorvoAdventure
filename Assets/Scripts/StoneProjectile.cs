@@ -26,20 +26,25 @@ public class StoneProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        switch (collision.gameObject.tag)
         {
-            collision.gameObject.GetComponent<Player>().DamagePlayer(Goblin.instance.damage);
-            gameObject.SetActive(false);
+            case "Player":
+                {
+                    collision.gameObject.GetComponent<Player>().DamagePlayer(Goblin.instance.damage);
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "Destroyable":
+                {
+                    collision.gameObject.GetComponent<Destroyable>().DamageObject(Player.instance.playerDamage);
+                    gameObject.SetActive(false);
+                }
+                break;
+            default:
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
         }
-        else if (collision.gameObject.tag == "Destroyable")
-        {
-            collision.gameObject.GetComponent<Destroyable>().DamageObject(Player.instance.playerDamage);
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-
     }
 }
