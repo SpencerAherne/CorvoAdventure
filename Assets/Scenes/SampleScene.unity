@@ -204,6 +204,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114827105971251040, guid: b803b0ba77bb4d846919e16198e20048,
+        type: 2}
+      propertyPath: arcanePulseCount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b803b0ba77bb4d846919e16198e20048, type: 2}
@@ -634,6 +639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCount: 2
   gemCount: 0
+  arcanePulseCount: 1
   playerMaxHealth: 5
   playerCurHealth: 0
   playerSpeed: 10
@@ -641,6 +647,8 @@ MonoBehaviour:
   playerFireRate: 2
   playerProjectileSpeed: 5
   currentRoom: {fileID: 0}
+  arcanePulse: {fileID: 5338979325934149134, guid: 61c94660248a2524f861a77f0e1a762d,
+    type: 3}
 --- !u!1 &1280990215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1143,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575192269641681998, guid: 6af2e20ea567d164d8f9a90517403b44,
+        type: 3}
+      propertyPath: m_Name
+      value: Skeleton (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575192269641681998, guid: 6af2e20ea567d164d8f9a90517403b44,
+        type: 3}
+      propertyPath: m_TagString
+      value: Skeleton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af2e20ea567d164d8f9a90517403b44, type: 3}

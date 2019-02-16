@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public int keyCount;
     public int gemCount;
+    public int arcanePulseCount;
     public float playerMaxHealth;
     public float playerCurHealth;
     public float playerSpeed = 10f;
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
     public float playerFireRate;
     public float playerProjectileSpeed;
     public Room currentRoom;
+
+    public GameObject arcanePulse;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerMovement.Move();
+        UseArcanePulse();
     }
 
     void FixedUpdate ()
@@ -51,5 +55,16 @@ public class Player : MonoBehaviour
             //kill player/end game
         }
         //give invul frames
+    }
+
+    void UseArcanePulse()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && arcanePulseCount > 0)
+        {
+            Debug.Log("UseArcanePulse was called");
+            //arcane pulse spawns in center of room if position and rotation aren't given, but doesn't spawn at all when position and rotation are given in this manner.
+            Instantiate(arcanePulse, transform.position, transform.rotation); 
+            arcanePulseCount -= 1;
+        }
     }
 }

@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Destroyable
   - PlayerProjectile
   - Potion
   - Key
   - Gem
+  - Skeleton
+  - Goblin
+  - Enemy
   layers:
   - Default
   - TransparentFX

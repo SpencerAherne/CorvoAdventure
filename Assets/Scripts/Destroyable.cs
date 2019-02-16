@@ -40,7 +40,10 @@ public class Destroyable : MonoBehaviour
 
     private void OnDisable()
     {
-        loot.DestroyableLootRoll(gameObject);
+        if (damageFromProjectile)
+        {
+            loot.DestroyableLootRoll(gameObject);
+        }
     }
 
 }
