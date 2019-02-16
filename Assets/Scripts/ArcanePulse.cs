@@ -13,7 +13,7 @@ public class ArcanePulse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("Pulse", timeToExplode);
+        
     }
 
     // Update is called once per frame
@@ -22,13 +22,21 @@ public class ArcanePulse : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine("Pulse");
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(transform.position, areaOfEffect);
     }
 
-    void Pulse()
+    IEnumerator Pulse()
     {
+        Debug.Log("pulse has started");
+        yield return new WaitForSecondsRealtime(timeToExplode);
+        Debug.Log("Got past waitforsecondsrealtime");
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, areaOfEffect, toHit);
         foreach (Collider2D collider in targets)
         {
@@ -37,34 +45,38 @@ public class ArcanePulse : MonoBehaviour
                 case "Player":
                     {
                         collider.gameObject.GetComponent<Player>().DamagePlayer(damage);
-                        Destroy(gameObject);
                     }
                     break;
                 case "Skeleton":
                     {
                         collider.gameObject.GetComponent<Skeleton>().DamageSkeleton(damage);
-                        Destroy(gameObject);
                     }
                     break;
                 case "Goblin":
                     {
                         collider.gameObject.GetComponent<Goblin>().DamageGoblin(damage);
-                        Destroy(gameObject);
                     }
                     break;
                 case "Destroyable":
                     {
                         collider.gameObject.GetComponent<Destroyable>().DamageObject(damage);
-                        Destroy(gameObject);
+                    }
+                    break;
+                case "ArmorStand":
+                    {
+                        collider.gameObject.SetActive(false);
                     }
                     break;
                 default:
+                    {
+                    }
                     break;
             }
         }
+        gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         StopAllCoroutines();
     }

@@ -12,6 +12,7 @@ TagManager:
   - Skeleton
   - Goblin
   - Enemy
+  - ArmorStand
   layers:
   - Default
   - TransparentFX

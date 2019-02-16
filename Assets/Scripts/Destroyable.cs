@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Destroyable : MonoBehaviour
 {
-    public bool damageFromProjectile;
     public float objMaxHealth = 10;
     public float objCurrentHealth;
     LootDropRolls loot;
@@ -28,22 +27,16 @@ public class Destroyable : MonoBehaviour
 
     public void DamageObject(float damage)
     {
-        if (damageFromProjectile)
+        objCurrentHealth -= damage;
+        if (objCurrentHealth <= 0)
         {
-            objCurrentHealth -= damage;
-            if (objCurrentHealth <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
     }
 
     private void OnDisable()
     {
-        if (damageFromProjectile)
-        {
-            loot.DestroyableLootRoll(gameObject);
-        }
+        loot.DestroyableLootRoll(gameObject);
     }
 
 }

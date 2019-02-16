@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2903300015459554860}
   m_Layer: 0
   m_Name: Armor_Stand
-  m_TagString: Untagged
+  m_TagString: ArmorStand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -62,8 +62,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && arcanePulseCount > 0)
         {
             Debug.Log("UseArcanePulse was called");
-            //arcane pulse spawns in center of room if position and rotation aren't given, but doesn't spawn at all when position and rotation are given in this manner.
-            Instantiate(arcanePulse, transform.position, transform.rotation); 
+            GameObject clone = GameObject.Find("ArcanePulsePool").GetComponent<ObjectPooler>().GetPooledObject();
+            clone.transform.position = transform.position;
+            clone.SetActive(true);
             arcanePulseCount -= 1;
         }
     }
