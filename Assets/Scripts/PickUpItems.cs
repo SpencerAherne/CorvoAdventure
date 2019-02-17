@@ -6,48 +6,34 @@ public class PickUpItems : MonoBehaviour {
 
     public int healthHealed;
 
-    // Use this for initialization
-    void Start ()
-    {
-
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (gameObject.tag)
+        if (collision.gameObject.tag == "Player")
         {
-            case "Key":
-                if (collision.gameObject.tag == "Player")
-                {
+            switch (gameObject.tag)
+            {
+                case "Key":
                     Player.instance.keyCount++;
                     gameObject.SetActive(false);
-                }
-                break;
-
-            case "Potion":
-                if (collision.gameObject.tag == "Player")
-                {
+                    break;
+                case "Potion":
                     if (Player.instance.playerCurHealth < Player.instance.playerMaxHealth)
                     {
                         Player.instance.playerCurHealth += healthHealed;
                         gameObject.SetActive(false);
                     }
-                }
-                break;
-
-            case "Gem":
-                if (collision.gameObject.tag == "Player")
-                {
+                    break;
+                case "Gem":
                     Player.instance.gemCount++;
                     gameObject.SetActive(false);
-                }
-                break;
+                    break;
+                case "Scroll":
+                    {
+                        Player.instance.arcanePulseCount++;
+                        gameObject.SetActive(false);
+                    }
+                    break;
+            }
         }
     }
 }

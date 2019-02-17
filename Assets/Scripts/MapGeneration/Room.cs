@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
-
+    //TODO: call loot drop roll method once I figure out how to trigger it by clearing room of enemies.
     public GameObject nDoor;
     public GameObject sDoor;
     public GameObject eDoor;

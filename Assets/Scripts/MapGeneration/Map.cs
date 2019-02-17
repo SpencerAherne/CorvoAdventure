@@ -7,7 +7,7 @@ using System.Linq;
 
 public class Map : MonoBehaviour
 {
-    List<Room> _rooms;
+    List<Room> rooms;
     public GameObject spawnRoomPrefab;
     int roomCount;
     public List<GameObject> bossRoomPrefabs;
@@ -26,7 +26,7 @@ public class Map : MonoBehaviour
     /// <returns>Starting Room</returns>
     private Room BuildMap(List<GameObject> preFabs)
     {
-        _rooms = new List<Room>();
+        rooms = new List<Room>();
         roomsAdded = new List<Room>();
         Room spawnRoom = spawnRoomPrefab.GetComponent<Room>();
         roomCount = 0;
@@ -35,7 +35,7 @@ public class Map : MonoBehaviour
         var currentRoom = startingRoom;
         currentRoom.XCoord = 0;
         currentRoom.YCoord = 0;
-        _rooms.Add(startingRoom);
+        rooms.Add(startingRoom);
 
         while (roomCount < 10)
         {
@@ -43,7 +43,7 @@ public class Map : MonoBehaviour
 
             CheckAdjacency(currentRoom);
 
-            _rooms.AddRange(roomsAdded);
+            rooms.AddRange(roomsAdded);
             roomsAdded.Clear();
 
             currentRoom = ChangeCurrentRoom();
@@ -107,25 +107,25 @@ public class Map : MonoBehaviour
     {
         foreach (Room room in roomsAdded)
         {
-            Room roomToEast = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
+            Room roomToEast = rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
             if (roomToEast != null && roomToEast != currentRoom)
             {
                 room.East = roomToEast;
                 roomToEast.West = room;
             }
-            Room roomToWest = _rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
+            Room roomToWest = rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
             if (roomToWest != null && roomToWest != currentRoom)
             {
                 room.West = roomToWest;
                 roomToWest.East = room;
             }
-            Room roomToNorth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
+            Room roomToNorth = rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
             if (roomToNorth != null && roomToNorth != currentRoom)
             {
                 room.North = roomToNorth;
                 roomToNorth.South = room;
             }
-            Room roomToSouth = _rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
+            Room roomToSouth = rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
             if (roomToSouth != null && roomToSouth != currentRoom)
             {
                 room.South = roomToSouth;
@@ -144,7 +144,7 @@ public class Map : MonoBehaviour
         Room xMinRoom = null;
         Room yMaxRoom = null;
         Room yMinRoom = null;
-        foreach (Room room in _rooms)
+        foreach (Room room in rooms)
         {
             if (room.Coordinates.x > xMax)
             {
@@ -224,14 +224,14 @@ public class Map : MonoBehaviour
                 yMinRoom.South = bossRoom;
                 break;
         }
-        _rooms.Add(bossRoom);
+        rooms.Add(bossRoom);
     }
 
     private Room ChangeCurrentRoom()
     {
         Room currentRoom;
 
-        IEnumerable<Room> query = _rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null);
+        IEnumerable<Room> query = rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null);
 
         //selects a random room from the list
         var randomSide = new System.Random();

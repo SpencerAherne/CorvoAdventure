@@ -8,6 +8,7 @@ public class LootDropRolls : MonoBehaviour
     GameObject Gem;
     GameObject Potion;
     GameObject Chest;
+    GameObject Scroll;
 
     //singleton or reference in gameplaymanager
 
@@ -17,6 +18,7 @@ public class LootDropRolls : MonoBehaviour
         Potion = GameObject.Find("PotionPool");
         Gem = GameObject.Find("GemPool");
         Chest = GameObject.Find("Chest");
+        Scroll = GameObject.Find("ScrollPool");
     }
 
     // Start is called before the first frame update
@@ -46,46 +48,57 @@ public class LootDropRolls : MonoBehaviour
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
         }
-        if (roll > 10 && roll <= 20)
+        if (roll > 10 && roll <= 15)
         {
-            GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
         }
-        if (roll > 20)
+        if (roll > 15 && roll <= 25)
+        {
+            GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
+            clone.transform.position = gameObject.transform.position;
+        }
+        if (roll > 25)
         {
             Debug.Log("The loot system rolled correctly");
         }
     }
-
+    //Currently set to spawn at 0,0,0 best option is to get current room and spawn in the center of it.
     public void RoomClearLootRoll()
     {
         int roll = Random.Range(1, 101);
         if (roll <= 5)
         {
             GameObject clone = Chest.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = gameObject.transform.position;
+            clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
         if (roll > 5 && roll <= 15)
         {
             GameObject clone = Key.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = gameObject.transform.position;
+            clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 15 && roll <= 30)
+        if (roll > 15 && roll <= 25)
+        {
+            GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
+            clone.transform.position = new Vector3(0, 0, 0);
+            clone.SetActive(true);
+        }
+        if (roll > 25 && roll <= 40)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = gameObject.transform.position;
+            clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 30 && roll <= 60)
+        if (roll > 40 && roll <= 70)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = gameObject.transform.position;
+            clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 60)
+        if (roll > 70)
         {
             Debug.Log("RoomLoot rolled correctly.");
         }
