@@ -31,7 +31,7 @@ public class EastDoor : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //bunch of art and animation stuff
         room.gameObject.SetActive(false);

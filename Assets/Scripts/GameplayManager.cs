@@ -14,6 +14,8 @@ public class GameplayManager : MonoBehaviour
     #endregion
 
     public Room currentRoom;
+    public delegate void RoomCleared();
+    public static event RoomCleared OnRoomClear;
        
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,10 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         //keep track of current room for other components to check against.
+        if (OnRoomClear != null)
+        {
+            OnRoomClear();
+        }
     }
 
 }

@@ -11,6 +11,7 @@ public class Map : MonoBehaviour
     public GameObject spawnRoomPrefab;
     int roomCount;
     public List<GameObject> bossRoomPrefabs;
+    public List<GameObject> treasureRoomPrefabs;
     List<Room> roomsAdded;
     public List<GameObject> preFabs;
 

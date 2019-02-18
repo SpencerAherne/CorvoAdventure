@@ -61,48 +61,49 @@ public class Room : MonoBehaviour
         {
             nDoor.SetActive(false);
         }
-
         if (South == null)
         {
             sDoor.SetActive(false);
         }
-
         if (East == null)
         {
             eDoor.SetActive(false);
         }
-
         if (West == null)
         {
             wDoor.SetActive(false);
+        }
+        if (enemiesInRoom != null && enemiesInRoom.Count > 0)//check that this works as intended, where it only subscribes to OnRoomClear if the room started with enemies in it.
+        {
+            GameplayManager.OnRoomClear += RoomClear;
         }
     }
 
     private void Update()
     {
-        if (enemiesInRoom.Count == 0 || enemiesInRoom == null)//Does this keep setting the sprite, if so how to only call once?
+        if (enemiesInRoom == null || enemiesInRoom.Count == 0)
         {
-            if (nDoor.activeInHierarchy && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)//check if sprite is already open.
+            if (nDoor.activeInHierarchy && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 nDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+                nDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
             if (sDoor.activeInHierarchy && sDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 sDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+                sDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
             if (eDoor.activeInHierarchy && eDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 eDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+                eDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
             if (wDoor.activeInHierarchy && wDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 wDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
+                wDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
 
-            if (enemiesInRoom.Count == 0)//Events
-            {
-                loot.RoomClearLootRoll();
-            }
         }
     }
 
@@ -128,4 +129,9 @@ public class Room : MonoBehaviour
         return nullSide;
     }
 
+    void RoomClear()
+    {
+        loot.RoomClearLootRoll();
+        GameplayManager.OnRoomClear -= RoomClear;
+    }
 }

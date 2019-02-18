@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4916780352832368}
   - component: {fileID: 212197264170577926}
   - component: {fileID: 114214358705516462}
+  - component: {fileID: 2066678139669241232}
   m_Layer: 0
   m_Name: SouthDoor
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194289293180180}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -4.5, z: 0}
+  m_LocalPosition: {x: 0, y: -4.8607, z: 0}
   m_LocalScale: {x: 0.20250499, y: 0.2155945, z: 0.20250499}
   m_Children:
   - {fileID: 3294104172100085692}
@@ -95,6 +96,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: {fileID: 4455404917766146014}
   treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
+--- !u!61 &2066678139669241232
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194289293180180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
 --- !u!1 &4455404917766146014
 GameObject:
   m_ObjectHideFlags: 0

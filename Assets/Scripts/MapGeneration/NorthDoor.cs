@@ -28,7 +28,7 @@ public class NorthDoor : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //whole bunch of animation and art stuff for changing rooms
         room.gameObject.SetActive(false);
@@ -37,6 +37,5 @@ public class NorthDoor : MonoBehaviour
         GameplayManager.instance.currentRoom = room.North;
 
         Player.instance.transform.position = GameplayManager.instance.currentRoom.sDoor.GetComponent<SouthDoor>().spawn.transform.position;
-
     }
 }

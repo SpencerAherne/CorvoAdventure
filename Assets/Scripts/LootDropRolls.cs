@@ -42,24 +42,24 @@ public class LootDropRolls : MonoBehaviour
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
         }
-        if (roll > 5 && roll <= 10)
+        else if (roll > 5 && roll <= 10)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
         }
-        if (roll > 10 && roll <= 15)
+        else if (roll > 10 && roll <= 15)
         {
             GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
         }
-        if (roll > 15 && roll <= 25)
+        else if (roll > 15 && roll <= 25)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = gameObject.transform.position;
         }
-        if (roll > 25)
+        else if (roll > 25)
         {
             Debug.Log("The loot system rolled correctly");
         }
@@ -74,31 +74,31 @@ public class LootDropRolls : MonoBehaviour
             clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 5 && roll <= 15)
+        else if (roll > 5 && roll <= 15)
         {
             GameObject clone = Key.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 15 && roll <= 25)
+        else if (roll > 15 && roll <= 25)
         {
             GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 25 && roll <= 40)
+        else if (roll > 25 && roll <= 40)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 40 && roll <= 70)
+        else if (roll > 40 && roll <= 70)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
             clone.transform.position = new Vector3(0, 0, 0);
             clone.SetActive(true);
         }
-        if (roll > 70)
+        else if (roll > 70)
         {
             Debug.Log("RoomLoot rolled correctly.");
         }

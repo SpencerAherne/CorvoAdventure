@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4560031079783298}
   - component: {fileID: 212632031122484606}
   - component: {fileID: 114751838940997950}
+  - component: {fileID: 7688500357810478666}
   m_Layer: 0
   m_Name: EastDoor
   m_TagString: Untagged
@@ -25,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864438609049432}
-  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 10.45, y: 0, z: 0}
-  m_LocalScale: {x: 0.20250499, y: 0.2160244, z: 0.20250499}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 9.05982, y: 0, z: 0}
+  m_LocalScale: {x: 0.20250525, y: 0.21602462, z: 0.20250499}
   m_Children:
   - {fileID: 6820026249758631653}
   m_Father: {fileID: 0}
@@ -95,6 +96,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: {fileID: 8755656848337373971}
   treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
+--- !u!61 &7688500357810478666
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864438609049432}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
 --- !u!1 &8755656848337373971
 GameObject:
   m_ObjectHideFlags: 0
