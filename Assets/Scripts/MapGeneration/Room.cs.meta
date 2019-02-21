@@ -4,10 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - nDoor: {instanceID: 0}
-  - sDoor: {instanceID: 0}
-  - eDoor: {instanceID: 0}
-  - wDoor: {instanceID: 0}
+  - nDoor: {fileID: 1651151808476368, guid: f2c103816924e6e4189f3ecdb8a5f6ee, type: 3}
+  - sDoor: {fileID: 1194289293180180, guid: 7ef1ca9bd651c5b4db3437907068a262, type: 3}
+  - eDoor: {fileID: 1864438609049432, guid: 60e692fe261a304408de7e7dc6a5b93f, type: 3}
+  - wDoor: {fileID: 1703578197231170, guid: f78944c143917b64b899730d97199c07, type: 3}
   - openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

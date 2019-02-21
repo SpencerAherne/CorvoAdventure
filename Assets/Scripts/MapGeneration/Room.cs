@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
     [SerializeField]
     List<GameObject> itemsInRoom = new List<GameObject>();//Don't think is needed.
     [SerializeField]
-    public ObservableCollection<GameObject> enemiesInRoom = new ObservableCollection<GameObject>();
+    public List<GameObject> enemiesInRoom = new List<GameObject>();
 
     LootDropRolls loot;
 
@@ -57,6 +57,7 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
+        //need door hitboxes to be active if door is not.
         if (North == null)
         {
             nDoor.SetActive(false);

@@ -32,7 +32,7 @@ public class ArcanePulse : MonoBehaviour
         Gizmos.DrawSphere(transform.position, areaOfEffect);
     }
 
-    IEnumerator Pulse()
+    IEnumerator Pulse() //Gets called even when not using an Arcane Pulse?
     {
         Debug.Log("pulse has started");
         yield return new WaitForSecondsRealtime(timeToExplode);

@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Destroyable.cs" />
     <Compile Include="Assets\Scripts\DestroyProjectile.cs" />
     <Compile Include="Assets\Scripts\GameplayManager.cs" />
+    <Compile Include="Assets\Scripts\GelatinousCubeBoss.cs" />
     <Compile Include="Assets\Scripts\Goblin.cs" />
     <Compile Include="Assets\Scripts\LootDropRolls.cs" />
     <Compile Include="Assets\Scripts\MapGeneration\EastDoor.cs" />
