@@ -38,6 +38,7 @@ public class Map : MonoBehaviour
         currentRoom.YCoord = 0;
         rooms.Add(startingRoom);
 
+        //Pick a random number between 0 and roomcount to be a treasure room.
         while (roomCount < 10)
         {
             GenerateRoomExits(currentRoom);

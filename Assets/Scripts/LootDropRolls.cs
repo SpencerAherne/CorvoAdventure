@@ -21,18 +21,6 @@ public class LootDropRolls : MonoBehaviour
         Scroll = GameObject.Find("ScrollPool");
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DestroyableLootRoll(GameObject gameObject)
     {
         int roll = Random.Range(1, 101);
@@ -64,7 +52,9 @@ public class LootDropRolls : MonoBehaviour
             Debug.Log("The loot system rolled correctly");
         }
     }
+
     //Currently set to spawn at 0,0,0 best option is to get current room and spawn in the center of it.
+    //Set spawnpoint gameobject in rooms, pass in the transform of the room's lootspawn.
     public void RoomClearLootRoll()
     {
         int roll = Random.Range(1, 101);

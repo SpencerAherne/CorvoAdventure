@@ -27,10 +27,8 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         //keep track of current room for other components to check against.
-        if (OnRoomClear != null)
-        {
-            OnRoomClear();
-        }
+        //actually make a way to see when list is empty.
+        OnRoomClear?.Invoke();
     }
 
 }

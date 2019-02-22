@@ -68,8 +68,6 @@ public class ArcanePulse : MonoBehaviour
                     }
                     break;
                 default:
-                    {
-                    }
                     break;
             }
         }

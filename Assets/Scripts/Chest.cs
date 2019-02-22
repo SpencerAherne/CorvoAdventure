@@ -37,6 +37,7 @@ public class Chest : MonoBehaviour {
         }
     }
 
+    //TODO: Make loot spawn either on oposite side of chest, or make it so it can't be picked up for a second when it spawns.
     void SpawnPowerUp(Collision2D player)
     {
         int roll = Random.Range(0, 5);
