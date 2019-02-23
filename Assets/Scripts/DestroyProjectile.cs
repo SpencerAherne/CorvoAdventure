@@ -29,32 +29,37 @@ public class DestroyProjectile : MonoBehaviour
     private void Update()
     {
         Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
         {
-            case "Skelton":
+            case "Skeleton":
                 {
+                    Debug.Log("Skeleton was hit");
                     collision.gameObject.GetComponent<Skeleton>().DamageSkeleton(Player.instance.playerDamage);
                     gameObject.SetActive(false);
                 }
                 break;
             case "Goblin":
                 {
+                    Debug.Log("Goblin was hit");
                     collision.gameObject.GetComponent<Goblin>().DamageGoblin(Player.instance.playerDamage);
                     gameObject.SetActive(false);
                 }
                 break;
             case "Destroyable":
                 {
+                    Debug.Log("Destroyable was hit");
                     collision.gameObject.GetComponent<Destroyable>().DamageObject(Player.instance.playerDamage);
                     gameObject.SetActive(false);
                 }
                 break;
             default:
                 {
+                    Debug.Log("Something was hit");
                     gameObject.SetActive(false);
                 }
                 break;

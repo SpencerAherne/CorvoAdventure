@@ -22,6 +22,7 @@ public class StoneProjectile : MonoBehaviour
     private void Update()
     {
         Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

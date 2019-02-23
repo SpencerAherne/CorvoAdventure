@@ -59,6 +59,7 @@ Transform:
   - {fileID: 4156663185464901115}
   - {fileID: 5892502823549480951}
   - {fileID: 5439681423369118954}
+  - {fileID: 587439077431959077}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 9520f9d4d8f6c794aa97b461b5d9da2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   sDoor: {fileID: 5896102392711975315}
   eDoor: {fileID: 4659349115051810320}
   wDoor: {fileID: 5437007429999496730}
+  lootSpawn: {fileID: 4190412777056797755}
   openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   treasureRoom: 0
   objectsInRoom: []
@@ -445,6 +447,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 1.02}
   m_EdgeRadius: 0
+--- !u!1 &4190412777056797755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587439077431959077}
+  m_Layer: 0
+  m_Name: LootSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &587439077431959077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190412777056797755}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.86899805, y: 1.0794404, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4023363898278612926}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &303499408370947398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1224,15 +1256,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 324e10bd6f2b1334ba78b56d952c715c, type: 3}
---- !u!1 &4575192269641681998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1114443978972224, guid: 324e10bd6f2b1334ba78b56d952c715c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4575002686887694350}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4572273234739287940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4036292066101130, guid: 324e10bd6f2b1334ba78b56d952c715c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4575002686887694350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4575192269641681998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1114443978972224, guid: 324e10bd6f2b1334ba78b56d952c715c,
     type: 3}
   m_PrefabInstance: {fileID: 4575002686887694350}
   m_PrefabAsset: {fileID: 0}
@@ -1293,15 +1325,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60e692fe261a304408de7e7dc6a5b93f, type: 3}
---- !u!1 &4659349115051810320 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1864438609049432, guid: 60e692fe261a304408de7e7dc6a5b93f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4661167232969009480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4665722299048145610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4560031079783298, guid: 60e692fe261a304408de7e7dc6a5b93f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4661167232969009480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4659349115051810320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1864438609049432, guid: 60e692fe261a304408de7e7dc6a5b93f,
     type: 3}
   m_PrefabInstance: {fileID: 4661167232969009480}
   m_PrefabAsset: {fileID: 0}

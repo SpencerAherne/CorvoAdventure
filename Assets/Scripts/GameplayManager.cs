@@ -27,8 +27,11 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         //keep track of current room for other components to check against.
-        //actually make a way to see when list is empty.
-        OnRoomClear?.Invoke();
+        //Should only be called when a room has had enemies, but no longer does. Not sure if works as I intend, also need to make sure the current room is tracked properly.
+        if (currentRoom.enemiesInRoom.Count == 0)
+        {
+            OnRoomClear?.Invoke();
+        }
     }
 
 }

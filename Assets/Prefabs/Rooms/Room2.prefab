@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &813651892904927759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7598763198401188827}
+  m_Layer: 0
+  m_Name: LootSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7598763198401188827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813651892904927759}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.86899805, y: 1.0794404, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2696512095490538779}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7870403093477317525
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,6 +80,7 @@ Transform:
   - {fileID: 2463235239417349470}
   - {fileID: 3031439331578364178}
   - {fileID: 5865755569792742781}
+  - {fileID: 7598763198401188827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 9520f9d4d8f6c794aa97b461b5d9da2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,6 +148,7 @@ MonoBehaviour:
   sDoor: {fileID: 4885223772963933480}
   eDoor: {fileID: 1713870087667296783}
   wDoor: {fileID: 3980819206402362044}
+  lootSpawn: {fileID: 813651892904927759}
   openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   treasureRoom: 0
   objectsInRoom: []
@@ -879,15 +911,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f78944c143917b64b899730d97199c07, type: 3}
---- !u!1 &3980819206402362044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1703578197231170, guid: f78944c143917b64b899730d97199c07,
-    type: 3}
-  m_PrefabInstance: {fileID: 3979133264590884094}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3978708059673911372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4377677028502706, guid: f78944c143917b64b899730d97199c07,
+    type: 3}
+  m_PrefabInstance: {fileID: 3979133264590884094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3980819206402362044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1703578197231170, guid: f78944c143917b64b899730d97199c07,
     type: 3}
   m_PrefabInstance: {fileID: 3979133264590884094}
   m_PrefabAsset: {fileID: 0}

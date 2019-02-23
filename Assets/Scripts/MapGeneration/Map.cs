@@ -10,6 +10,7 @@ public class Map : MonoBehaviour
     List<Room> rooms;
     public GameObject spawnRoomPrefab;
     int roomCount;
+    int treasureRoom;
     public List<GameObject> bossRoomPrefabs;
     public List<GameObject> treasureRoomPrefabs;
     List<Room> roomsAdded;
@@ -39,6 +40,7 @@ public class Map : MonoBehaviour
         rooms.Add(startingRoom);
 
         //Pick a random number between 0 and roomcount to be a treasure room.
+        treasureRoom = UnityEngine.Random.Range(0, 10);
         while (roomCount < 10)
         {
             GenerateRoomExits(currentRoom);
@@ -72,7 +74,17 @@ public class Map : MonoBehaviour
             {
                 return null;
             }
-            var nextRoom = FindNextRoom(preFabs);
+
+            //Does this work?
+            Room nextRoom;
+            if (roomCount == treasureRoom)
+            {
+                nextRoom = FindNextRoom(treasureRoomPrefabs);
+            }
+            else
+            {
+                nextRoom = FindNextRoom(preFabs);
+            }
             nextRoom.XCoord = currentRoom.XCoord;
             nextRoom.YCoord = currentRoom.YCoord;
 

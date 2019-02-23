@@ -55,37 +55,37 @@ public class LootDropRolls : MonoBehaviour
 
     //Currently set to spawn at 0,0,0 best option is to get current room and spawn in the center of it.
     //Set spawnpoint gameobject in rooms, pass in the transform of the room's lootspawn.
-    public void RoomClearLootRoll()
+    public void RoomClearLootRoll(GameObject lootspawn)
     {
         int roll = Random.Range(1, 101);
         if (roll <= 5)
         {
             GameObject clone = Chest.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = new Vector3(0, 0, 0);
+            clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 5 && roll <= 15)
         {
             GameObject clone = Key.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = new Vector3(0, 0, 0);
+            clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 15 && roll <= 25)
         {
             GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = new Vector3(0, 0, 0);
+            clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 25 && roll <= 40)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = new Vector3(0, 0, 0);
+            clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 40 && roll <= 70)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.position = new Vector3(0, 0, 0);
+            clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 70)

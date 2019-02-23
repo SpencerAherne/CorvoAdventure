@@ -13,6 +13,8 @@ public class Room : MonoBehaviour
     public GameObject eDoor;
     public GameObject wDoor;
 
+    public GameObject lootSpawn;
+
     public Sprite openDoorSprite;
 
     // Know what's connected it
@@ -132,7 +134,7 @@ public class Room : MonoBehaviour
 
     void RoomClear()
     {
-        loot.RoomClearLootRoll();
+        loot.RoomClearLootRoll(lootSpawn);
         GameplayManager.OnRoomClear -= RoomClear;
     }
 }
