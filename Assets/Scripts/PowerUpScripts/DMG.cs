@@ -5,6 +5,12 @@ using UnityEngine;
 public class DMG : MonoBehaviour
 {
     public float damageIncrease;
+    public float pickUpTime = 1.5f;
+
+    private void Start()
+    {
+        SpawnDelay();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,5 +19,13 @@ public class DMG : MonoBehaviour
             Player.instance.playerDamage += damageIncrease;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator SpawnDelay()
+    {
+        BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
+        bc.enabled = false;
+        yield return new WaitForSecondsRealtime(pickUpTime);
+        bc.enabled = true;
     }
 }

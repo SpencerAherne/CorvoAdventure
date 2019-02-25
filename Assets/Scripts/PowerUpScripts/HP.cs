@@ -5,6 +5,12 @@ using UnityEngine;
 public class HP : MonoBehaviour
 {
     public int healthIncrease = 1;
+    public float pickUpTime = 1.5f;
+
+    private void Start()
+    {
+        SpawnDelay();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,5 +20,13 @@ public class HP : MonoBehaviour
             Player.instance.playerCurHealth += healthIncrease;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator SpawnDelay()
+    {
+        BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
+        bc.enabled = false;
+        yield return new WaitForSecondsRealtime(pickUpTime);
+        bc.enabled = true;
     }
 }

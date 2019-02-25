@@ -51,8 +51,15 @@ public class GelatinousCubeBoss : MonoBehaviour
 
     private IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
-        rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position, speed));
-        yield return new WaitForSecondsRealtime(stillTime);
-        isMoving = false;
+        if (collision.gameObject.layer == 8)
+        {
+            yield break;
+        }
+        else
+        {
+            rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position, speed));
+            yield return new WaitForSecondsRealtime(stillTime);
+            isMoving = false;
+        }
     }
 }

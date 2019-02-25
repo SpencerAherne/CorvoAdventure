@@ -5,6 +5,12 @@ using UnityEngine;
 public class SPD : MonoBehaviour
 {
     public float speedIncrease;
+    public float pickUpTime;
+
+    private void Start()
+    {
+        SpawnDelay();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,5 +19,13 @@ public class SPD : MonoBehaviour
             Player.instance.playerSpeed += speedIncrease;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator SpawnDelay()
+    {
+        BoxCollider2D bc = gameObject.GetComponent<BoxCollider2D>();
+        bc.enabled = false;
+        yield return new WaitForSecondsRealtime(pickUpTime);
+        bc.enabled = true;
     }
 }

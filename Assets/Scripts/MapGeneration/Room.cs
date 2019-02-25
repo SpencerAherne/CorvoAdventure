@@ -62,19 +62,19 @@ public class Room : MonoBehaviour
         //need door hitboxes to be active if door is not.
         if (North == null)
         {
-            nDoor.SetActive(false);
+            nDoor.GetComponent<Renderer>().enabled = false;
         }
         if (South == null)
         {
-            sDoor.SetActive(false);
+            sDoor.GetComponent<Renderer>().enabled = false;
         }
         if (East == null)
         {
-            eDoor.SetActive(false);
+            eDoor.GetComponent<Renderer>().enabled = false;
         }
         if (West == null)
         {
-            wDoor.SetActive(false);
+            wDoor.GetComponent<Renderer>().enabled = false;
         }
         if (enemiesInRoom != null && enemiesInRoom.Count > 0)//check that this works as intended, where it only subscribes to OnRoomClear if the room started with enemies in it.
         {
@@ -86,22 +86,22 @@ public class Room : MonoBehaviour
     {
         if (enemiesInRoom == null || enemiesInRoom.Count == 0)
         {
-            if (nDoor.activeInHierarchy && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
+            if (nDoor.GetComponent<Renderer>().enabled == true && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 nDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 nDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
-            if (sDoor.activeInHierarchy && sDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
+            if (sDoor.GetComponent<Renderer>().enabled == true && sDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 sDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 sDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
-            if (eDoor.activeInHierarchy && eDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
+            if (eDoor.GetComponent<Renderer>().enabled == true && eDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 eDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 eDoor.GetComponent<BoxCollider2D>().isTrigger = true;
             }
-            if (wDoor.activeInHierarchy && wDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
+            if (wDoor.GetComponent<Renderer>().enabled == true && wDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)
             {
                 wDoor.GetComponent<SpriteRenderer>().sprite = openDoorSprite;
                 wDoor.GetComponent<BoxCollider2D>().isTrigger = true;
