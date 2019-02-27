@@ -11,27 +11,31 @@ public class GelatinousCubeBoss : MonoBehaviour
     Rigidbody2D rb;
     bool isMoving = false;
     public float stillTime;
+    new Collider2D collider;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         curHealth = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isMoving == false)
         {
             Movement();
+            isMoving = true;
         }
     }
 
-    IEnumerator Movement()//ask if this works well.
+    private void Movement()//ask if this works well.
     {
-        isMoving = true;
+        Debug.Log("Movement has been called");
+        //Would be better if I could use bounds.min/bounds.max, but would require remaking how rooms are made.
         float xMin = -8.2f;
         float xMax = 8.2f;
         float yMin = -3.9f;
@@ -41,12 +45,24 @@ public class GelatinousCubeBoss : MonoBehaviour
         float xPos = Random.Range(xMin, xMax);
         float yPos = Random.Range(yMin, yMax);
         Vector2 endPos = new Vector2(xPos, yPos);
-        rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed));
+        //if point endpos is withing the boss, it breaks to restart the method, rather than moving to said position.
+        rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime));
         if ((Vector2)transform.position == endPos)
         {
-            yield return new WaitForSecondsRealtime(stillTime);
-            isMoving = false;
+            StopMoving();
         }
+    }
+
+    IEnumerator Trail()
+    {
+        //leave behind trail of slime that slows or damages player
+        yield break;
+    }
+
+    IEnumerator StopMoving()
+    {
+        yield return new WaitForSecondsRealtime(stillTime);
+        isMoving = false;
     }
 
     private IEnumerator OnCollisionEnter2D(Collision2D collision)
