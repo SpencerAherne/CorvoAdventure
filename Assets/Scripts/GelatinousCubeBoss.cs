@@ -11,28 +11,49 @@ public class GelatinousCubeBoss : MonoBehaviour
     Rigidbody2D rb;
     bool isMoving = false;
     public float stillTime;
-    new Collider2D collider;
+    Vector2 endPos;
+    TrailRenderer trail;
+    public float debuffDuration = 3f;
+    public float slowRate = .8f;
+    bool isDebuffed = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
         curHealth = maxHealth;
+        trail = GetComponent<TrailRenderer>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        if (isMoving == false)
+        if (trail.bounds.Contains(Player.instance.transform.position) && isDebuffed == false)
         {
-            Movement();
-            isMoving = true;
+            StartCoroutine(SlowDebuff());
         }
     }
 
-    private void Movement()//ask if this works well.
+    //If boss runs into wall, then picks a second location in which they never leave contact with the wall, it doesn't pick another point to move to.
+    void FixedUpdate()
+    {
+        if (endPos == null)
+        {
+            endPos = Movement();
+        }
+        else if (endPos == (Vector2)transform.position)
+        {
+            StartCoroutine(StopMoving());
+            if (isMoving == false)
+            {
+                endPos = Movement();
+            }
+        }
+        rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime));
+        Debug.DrawLine(transform.position, endPos);
+    }
+
+    private Vector2 Movement()//ask if this works well.
     {
         Debug.Log("Movement has been called");
         //Would be better if I could use bounds.min/bounds.max, but would require remaking how rooms are made.
@@ -45,37 +66,51 @@ public class GelatinousCubeBoss : MonoBehaviour
         float xPos = Random.Range(xMin, xMax);
         float yPos = Random.Range(yMin, yMax);
         Vector2 endPos = new Vector2(xPos, yPos);
-        //if point endpos is withing the boss, it breaks to restart the method, rather than moving to said position.
-        rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime));
-        if ((Vector2)transform.position == endPos)
-        {
-            StopMoving();
-        }
+        return endPos;
     }
 
-    IEnumerator Trail()
+    IEnumerator SlowDebuff()
     {
-        //leave behind trail of slime that slows or damages player
-        yield break;
+        isDebuffed = true;
+        Player.instance.playerSpeed = Player.instance.playerSpeed * slowRate;
+        yield return new WaitForSecondsRealtime(debuffDuration);
+        Player.instance.playerSpeed = Player.instance.playerSpeed / slowRate;
+        isDebuffed = false;
     }
 
-    IEnumerator StopMoving()
+    IEnumerator StopMoving()//Doesn't actually stop the boss. Ask if this feels right or not.
     {
         yield return new WaitForSecondsRealtime(stillTime);
         isMoving = false;
     }
 
-    private IEnumerator OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            Player.instance.DamagePlayer(damage);
+        }
+
         if (collision.gameObject.layer == 8)
         {
-            yield break;
+            return;
         }
         else
         {
-            rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position, speed));
-            yield return new WaitForSecondsRealtime(stillTime);
-            isMoving = false;
+            Debug.Log("onCollisionEnter2D was called");
+            StartCoroutine(StopMoving());
+            endPos = Movement();
+            rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime));
+        }
+    }
+
+    public void DamageBoss(float damage)
+    {
+        curHealth -= damage;
+        if (curHealth <= 0)
+        {
+            Destroy(gameObject);
+            //Boss loot would drop here if I decide to add it
         }
     }
 }

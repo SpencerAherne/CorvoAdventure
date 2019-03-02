@@ -11,6 +11,8 @@ public class Chest : MonoBehaviour {
     public GameObject RateOfFiePowerUp;
     public GameObject ProjectileSpeedPowerUp;
     public GameObject PlayerSpeedPowerUp;
+    public float pickUpTime = 1.5f;
+    public float radius = 1.5f;
 
     // Use this for initialization
     void Start ()
@@ -37,29 +39,42 @@ public class Chest : MonoBehaviour {
         }
     }
 
-    //TODO: Make loot spawn either on oposite side of chest, or make it so it can't be picked up for a second when it spawns.
     void SpawnPowerUp(Collision2D player)
     {
         int roll = Random.Range(0, 5);
         if (roll == 0)
         {
-            Instantiate(HPPowerUp, -player.transform.position, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(HPPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            StartCoroutine(SpawnDelay(powerUp));
         }
-        if (roll == 1)
+        else if (roll == 1)
         {
-            Instantiate(DMGPowerUp, -player.transform.position, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(DMGPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            StartCoroutine(SpawnDelay(powerUp));
         }
-        if (roll == 2)
+        else if (roll == 2)
         {
-            Instantiate(PlayerSpeedPowerUp, -player.transform.position, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(PlayerSpeedPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            StartCoroutine(SpawnDelay(powerUp));
         }
-        if (roll == 3)
+        else if (roll == 3)
         {
-            Instantiate(RateOfFiePowerUp, -player.transform.position, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(RateOfFiePowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            StartCoroutine(SpawnDelay(powerUp));
         }
-        if (roll == 4)
+        else if (roll == 4)
         {
-            Instantiate(ProjectileSpeedPowerUp, -player.transform.position, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(ProjectileSpeedPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            StartCoroutine(SpawnDelay(powerUp));
         }
+
+    }
+
+    IEnumerator SpawnDelay(GameObject powerUp)
+    {
+        BoxCollider2D bc = powerUp.GetComponent<BoxCollider2D>();
+        bc.enabled = false;
+        yield return new WaitForSecondsRealtime(pickUpTime);
+        bc.enabled = true;
     }
 }

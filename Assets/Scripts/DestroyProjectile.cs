@@ -57,6 +57,13 @@ public class DestroyProjectile : MonoBehaviour
                     gameObject.SetActive(false);
                 }
                 break;
+            case "GelatinousCube":
+                {
+                    Debug.Log("Boss was hit");
+                    collision.gameObject.GetComponent<GelatinousCubeBoss>().DamageBoss(Player.instance.playerDamage);
+                    gameObject.SetActive(false);
+                }
+                break;
             default:
                 {
                     Debug.Log("Something was hit");

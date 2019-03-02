@@ -13,6 +13,7 @@ TagManager:
   - Goblin
   - Enemy
   - ArmorStand
+  - GelatinousCube
   layers:
   - Default
   - TransparentFX
