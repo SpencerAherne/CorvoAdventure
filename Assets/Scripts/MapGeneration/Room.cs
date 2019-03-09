@@ -49,10 +49,6 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
-        Directions.Add(North);
-        Directions.Add(South);
-        Directions.Add(East);
-        Directions.Add(West);
         Coordinates = new Vector2(XCoord, YCoord);
         loot = new LootDropRolls();
     }
@@ -110,17 +106,34 @@ public class Room : MonoBehaviour
         }
     }
 
+    public enum Direction
+    {
+        North = 0,
+        East = 1,
+        South = 2,
+        West = 3
+    };
+
     //Make sure this can return null if there are no null sides!
     public string FindNullSide()
     {
         string nullSide;
-        List<Room> x = new List<Room>();
-        foreach (Room direction in Directions)
+        List<Direction> x = new List<Direction>();
+        if (North == null)
         {
-            if (direction == null)
-            {
-                x.Add(direction);
-            }
+            x.Add(Direction.North);
+        }
+        if (South == null)
+        {
+            x.Add(Direction.South);
+        }
+        if (East == null)
+        {
+            x.Add(Direction.East);
+        }
+        if (West == null)
+        {
+            x.Add(Direction.West);
         }
         if (x.Count == 0)
         {

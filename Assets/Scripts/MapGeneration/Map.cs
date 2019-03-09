@@ -16,9 +16,16 @@ public class Map : MonoBehaviour
     List<Room> roomsAdded;
     public List<GameObject> preFabs;
 
-    public Map()//how to call method to actually build map and give me starting room.
+    private void Start()
     {
-        var currentRoom = BuildMap(preFabs);
+        MapGen();
+        Player.instance.transform.position = GameObject.Find("PlayerSpawn").transform.position;
+    }
+
+    public Room MapGen()
+    {
+        Room currentRoom = BuildMap(preFabs);
+        return currentRoom;
     }
 
     /// <summary>
@@ -33,27 +40,38 @@ public class Map : MonoBehaviour
         Room spawnRoom = spawnRoomPrefab.GetComponent<Room>();
         roomCount = 0;
 
-        var startingRoom = spawnRoom;
-        var currentRoom = startingRoom;
+        Debug.Log("Code sets startingRoom");
+        Instantiate(spawnRoom.gameObject).SetActive(true);
+        var currentRoom = spawnRoom;
         currentRoom.XCoord = 0;
         currentRoom.YCoord = 0;
-        rooms.Add(startingRoom);
-
+        rooms.Add(spawnRoom);
+        Debug.Log(currentRoom);
         //Pick a random number between 0 and roomcount to be a treasure room.
         treasureRoom = UnityEngine.Random.Range(0, 10);
         while (roomCount < 10)
         {
+            Debug.Log($"roomCount at start is {roomCount}");
+            Debug.Log(currentRoom);
             GenerateRoomExits(currentRoom);
+            Debug.Log("GenerateRoomExits was called correctly");
 
             CheckAdjacency(currentRoom);
+            Debug.Log("CheckAdjeceny was called correctly");
 
             rooms.AddRange(roomsAdded);
             roomsAdded.Clear();
+            Debug.Log("Rooms were correctly added to list");
+
+            Instantiate(currentRoom.gameObject);
+            Debug.Log("Room was instatiated");
 
             currentRoom = ChangeCurrentRoom();
+            Debug.Log("CurrentRoom was changed");
+            Debug.Log($"roomCount at end is {roomCount}");
         }
         SpawnBossRoom();
-        return startingRoom;
+        return spawnRoom;
     }
 
     private Room FindNextRoom(List<GameObject> preFabs)
@@ -67,15 +85,17 @@ public class Map : MonoBehaviour
 
     private Room GenerateRoomExits(Room currentRoom)
     {
+        Debug.Log(currentRoom);
         int numberOfExits = UnityEngine.Random.Range(1, 3);
         for (int i = 0; i < numberOfExits; i++)
         {
             if (currentRoom.FindNullSide() == null)
             {
+                Debug.Log("This null is planned, is there way to make not an error?");
                 return null;
             }
 
-            //Does this work?
+            Debug.Log("Does script get here?");
             Room nextRoom;
             if (roomCount == treasureRoom)
             {
@@ -111,7 +131,10 @@ public class Map : MonoBehaviour
                     nextRoom.XCoord--;
                     break;
             }
+            Debug.Log("Does script get here?");
+            Debug.Log($"roomcount is {roomCount}");
             roomCount++;
+            Debug.Log($"roomcount is {roomCount}");
             roomsAdded.Add(nextRoom);
         }
         return currentRoom;
@@ -121,25 +144,25 @@ public class Map : MonoBehaviour
     {
         foreach (Room room in roomsAdded)
         {
-            Room roomToEast = rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
+            Room roomToEast = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
             if (roomToEast != null && roomToEast != currentRoom)
             {
                 room.East = roomToEast;
                 roomToEast.West = room;
             }
-            Room roomToWest = rooms.First(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
+            Room roomToWest = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
             if (roomToWest != null && roomToWest != currentRoom)
             {
                 room.West = roomToWest;
                 roomToWest.East = room;
             }
-            Room roomToNorth = rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
+            Room roomToNorth = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
             if (roomToNorth != null && roomToNorth != currentRoom)
             {
                 room.North = roomToNorth;
                 roomToNorth.South = room;
             }
-            Room roomToSouth = rooms.First(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
+            Room roomToSouth = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
             if (roomToSouth != null && roomToSouth != currentRoom)
             {
                 room.South = roomToSouth;
@@ -245,7 +268,7 @@ public class Map : MonoBehaviour
     {
         Room currentRoom;
 
-        IEnumerable<Room> query = rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null);
+        List<Room> query = rooms.Where(blank => blank.North == null || blank.South == null || blank.East == null || blank.West == null).ToList();
 
         //selects a random room from the list
         var randomSide = new System.Random();

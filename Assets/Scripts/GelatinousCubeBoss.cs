@@ -104,6 +104,25 @@ public class GelatinousCubeBoss : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            return;
+        }
+        else if (collision.gameObject.layer == 8)
+        {
+            return;
+        }
+        else
+        {
+            Debug.Log("onCollisionEnter2D was called");
+            StartCoroutine(StopMoving());
+            endPos = Movement();
+            rb.MovePosition(Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime));
+        }
+    }
+
     public void DamageBoss(float damage)
     {
         curHealth -= damage;

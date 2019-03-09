@@ -16,10 +16,12 @@ public class GameplayManager : MonoBehaviour
     public Room currentRoom;
     public delegate void RoomCleared();
     public static event RoomCleared OnRoomClear;
-       
+    
     // Start is called before the first frame update
     void Start()
     {
+
+        //Figure out how to call map method
         //spawn player in starting room
     }
 
