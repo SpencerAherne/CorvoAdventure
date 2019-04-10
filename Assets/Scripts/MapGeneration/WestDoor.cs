@@ -6,23 +6,17 @@ public class WestDoor : MonoBehaviour
 {
     Room room;
     public GameObject spawn;
-    SpriteRenderer spriteRenderer;
-    public Material treasureRoomMat;
+    public Room WestRoom { get; set; }
 
     private void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         room = gameObject.GetComponentInParent<Room>();
-        if (room.West.treasureRoom == true)
-        {
-            spriteRenderer.material = treasureRoomMat;
-        }
-
     }
 
     // Update is called once per frame
@@ -33,13 +27,14 @@ public class WestDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //bunch of art and animation stuff
-        room.gameObject.SetActive(false);
-        room.West.gameObject.SetActive(true);
+        if (collision.gameObject.tag == "Player")
+        {
+            //bunch of art and animation stuff
+            room.gameObject.SetActive(false);
+            WestRoom.gameObject.SetActive(true);
 
-        GameplayManager.instance.currentRoom = room.West;
-
-        Player.instance.transform.position = GameplayManager.instance.currentRoom.eDoor.GetComponent<EastDoor>().spawn.transform.position;
+            Player.instance.transform.position = WestRoom.eDoor.GetComponent<EastDoor>().spawn.transform.position;
+        }
     }
 
 }

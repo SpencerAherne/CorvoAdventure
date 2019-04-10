@@ -6,21 +6,16 @@ public class NorthDoor : MonoBehaviour
 {
     Room room;
     public GameObject spawn;
-    SpriteRenderer spriteRenderer;
-    public Material treasureRoomMat;
+    public Room NorthRoom { get; set; }
 
     private void Awake()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
     }
 
     void Start()
     {
-        room = GetComponentInParent<Room>();
-        if (room.North.treasureRoom == true)
-        {
-            spriteRenderer.material = treasureRoomMat;
-        }
+        room = gameObject.GetComponentInParent<Room>();
     }
 
     void Update()
@@ -30,12 +25,13 @@ public class NorthDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //whole bunch of animation and art stuff for changing rooms
-        room.gameObject.SetActive(false);
-        room.North.gameObject.SetActive(true);
+        if (collision.gameObject.tag == "Player")
+        {
+            //whole bunch of animation and art stuff for changing rooms
+            room.gameObject.SetActive(false);
+            NorthRoom.gameObject.SetActive(true);
 
-        GameplayManager.instance.currentRoom = room.North;
-
-        Player.instance.transform.position = GameplayManager.instance.currentRoom.sDoor.GetComponent<SouthDoor>().spawn.transform.position;
+            Player.instance.transform.position = NorthRoom.sDoor.GetComponent<SouthDoor>().spawn.transform.position;
+        }
     }
 }

@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
 
     public Sprite openDoorSprite;
 
+
     // Know what's connected it
     // Needs to what objects (barrels, items, enemies)
 
@@ -29,7 +30,6 @@ public class Room : MonoBehaviour
     //x,y coordinates to keep track of room locations reletive to eachother.
     public float XCoord { get; set; }
     public float YCoord { get; set; }
-    public Vector2 Coordinates { get; set; }
 
     public bool treasureRoom = false;
 
@@ -49,29 +49,11 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
-        Coordinates = new Vector2(XCoord, YCoord);
-        loot = new LootDropRolls();
+        loot = GameObject.Find("GamePlayManager").GetComponent<LootDropRolls>();
     }
 
     private void Start()
     {
-        //need door hitboxes to be active if door is not.
-        if (North == null)
-        {
-            nDoor.GetComponent<Renderer>().enabled = false;
-        }
-        if (South == null)
-        {
-            sDoor.GetComponent<Renderer>().enabled = false;
-        }
-        if (East == null)
-        {
-            eDoor.GetComponent<Renderer>().enabled = false;
-        }
-        if (West == null)
-        {
-            wDoor.GetComponent<Renderer>().enabled = false;
-        }
         if (enemiesInRoom != null && enemiesInRoom.Count > 0)//check that this works as intended, where it only subscribes to OnRoomClear if the room started with enemies in it.
         {
             GameplayManager.OnRoomClear += RoomClear;

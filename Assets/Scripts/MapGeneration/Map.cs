@@ -8,13 +8,19 @@ using System.Linq;
 public class Map : MonoBehaviour
 {
     List<Room> rooms;
-    public GameObject spawnRoomPrefab;
+    List<Room> roomPreFabs;
+    List<Room> sRoomPreFabs;
+    List<Room> tRoomPreFabs;
+    List<Room> bRoomPreFabs;
+    public List<GameObject> spawnRoomPrefab;
     int roomCount;
     int treasureRoom;
     public List<GameObject> bossRoomPrefabs;
     public List<GameObject> treasureRoomPrefabs;
     List<Room> roomsAdded;
     public List<GameObject> preFabs;
+    public Material treasureRoomMat;
+    public Sprite closedDoorSprite;
 
     private void Start()
     {
@@ -35,18 +41,46 @@ public class Map : MonoBehaviour
     /// <returns>Starting Room</returns>
     private Room BuildMap(List<GameObject> preFabs)
     {
+        roomPreFabs = new List<Room>();
+        sRoomPreFabs = new List<Room>();
+        tRoomPreFabs = new List<Room>();
+        bRoomPreFabs = new List<Room>();
         rooms = new List<Room>();
         roomsAdded = new List<Room>();
-        Room spawnRoom = spawnRoomPrefab.GetComponent<Room>();
         roomCount = 0;
 
-        Debug.Log("Code sets startingRoom");
-        Instantiate(spawnRoom.gameObject).SetActive(true);
+        foreach (GameObject gameObject in spawnRoomPrefab)
+        {
+            Room room = Instantiate(gameObject.GetComponent<Room>());
+            sRoomPreFabs.Add(room);
+        }
+
+        foreach (GameObject gameObject in preFabs)
+        {
+            Room room = Instantiate(gameObject.GetComponent<Room>());
+            roomPreFabs.Add(room);
+        }
+
+        foreach (GameObject gameObject in treasureRoomPrefabs)
+        {
+            Room room = Instantiate(gameObject.GetComponent<Room>());
+            tRoomPreFabs.Add(room);
+        }
+
+        foreach (GameObject gameObject in bossRoomPrefabs)
+        {
+            Room room = Instantiate(gameObject.GetComponent<Room>());
+            bRoomPreFabs.Add(room);
+        }
+
+        var random = new System.Random();
+        int index = random.Next(sRoomPreFabs.Count);
+        Room spawnRoom = sRoomPreFabs[index].GetComponent<Room>();
+
         var currentRoom = spawnRoom;
         currentRoom.XCoord = 0;
         currentRoom.YCoord = 0;
         rooms.Add(spawnRoom);
-        Debug.Log(currentRoom);
         //Pick a random number between 0 and roomcount to be a treasure room.
         treasureRoom = UnityEngine.Random.Range(0, 10);
         while (roomCount < 10)
@@ -63,23 +97,30 @@ public class Map : MonoBehaviour
             roomsAdded.Clear();
             Debug.Log("Rooms were correctly added to list");
 
-            Instantiate(currentRoom.gameObject);
-            Debug.Log("Room was instatiated");
-
             currentRoom = ChangeCurrentRoom();
             Debug.Log("CurrentRoom was changed");
             Debug.Log($"roomCount at end is {roomCount}");
         }
+
         SpawnBossRoom();
+
+        foreach (Room room in rooms)
+        {
+            room.gameObject.SetActive(true);
+            AddDoors(room);
+            room.gameObject.SetActive(false);
+        }
+
+        spawnRoom.gameObject.SetActive(true);
         return spawnRoom;
     }
 
-    private Room FindNextRoom(List<GameObject> preFabs)
+    private Room FindNextRoom(List<Room> PreFabs)
     {
         var random = new System.Random();
-        int index = random.Next(preFabs.Count);
-        Room nextRoom = preFabs[index].GetComponent<Room>();
-        preFabs.Remove(preFabs[index]);
+        int index = random.Next(PreFabs.Count);
+        Room nextRoom = PreFabs[index].GetComponent<Room>();
+        PreFabs.Remove(PreFabs[index]);
         return nextRoom;
     }
 
@@ -91,7 +132,6 @@ public class Map : MonoBehaviour
         {
             if (currentRoom.FindNullSide() == null)
             {
-                Debug.Log("This null is planned, is there way to make not an error?");
                 return null;
             }
 
@@ -99,11 +139,11 @@ public class Map : MonoBehaviour
             Room nextRoom;
             if (roomCount == treasureRoom)
             {
-                nextRoom = FindNextRoom(treasureRoomPrefabs);
+                nextRoom = FindNextRoom(tRoomPreFabs);
             }
             else
             {
-                nextRoom = FindNextRoom(preFabs);
+                nextRoom = FindNextRoom(roomPreFabs);
             }
             nextRoom.XCoord = currentRoom.XCoord;
             nextRoom.YCoord = currentRoom.YCoord;
@@ -144,29 +184,89 @@ public class Map : MonoBehaviour
     {
         foreach (Room room in roomsAdded)
         {
-            Room roomToEast = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.x == room.Coordinates.x + 1);
+            Room roomToEast = rooms.FirstOrDefault(adjecent => adjecent.XCoord == room.XCoord + 1 && adjecent.YCoord == room.YCoord);
             if (roomToEast != null && roomToEast != currentRoom)
             {
                 room.East = roomToEast;
                 roomToEast.West = room;
             }
-            Room roomToWest = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.x == room.Coordinates.x - 1);
+            Room roomToWest = rooms.FirstOrDefault(adjecent => adjecent.XCoord == room.XCoord - 1 && adjecent.YCoord == room.YCoord);
             if (roomToWest != null && roomToWest != currentRoom)
             {
                 room.West = roomToWest;
                 roomToWest.East = room;
             }
-            Room roomToNorth = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.y == room.Coordinates.y + 1);
+            Room roomToNorth = rooms.FirstOrDefault(adjecent => adjecent.YCoord == room.YCoord + 1 && adjecent.XCoord == room.XCoord);
             if (roomToNorth != null && roomToNorth != currentRoom)
             {
                 room.North = roomToNorth;
                 roomToNorth.South = room;
             }
-            Room roomToSouth = rooms.FirstOrDefault(adjecent => adjecent.Coordinates.y == room.Coordinates.y - 1);
+            Room roomToSouth = rooms.FirstOrDefault(adjecent => adjecent.YCoord == room.YCoord - 1 && adjecent.XCoord == room.XCoord);
             if (roomToSouth != null && roomToSouth != currentRoom)
             {
                 room.South = roomToSouth;
                 roomToSouth.North = room;
+            }
+        }
+    }
+
+    private void AddDoors(Room currentRoom)
+    {
+        if (currentRoom.North == null)
+        {
+            currentRoom.nDoor.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            currentRoom.nDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.nDoor.GetComponent<Renderer>().enabled = true;
+            currentRoom.nDoor.GetComponent<NorthDoor>().NorthRoom = currentRoom.North;
+            if (currentRoom.North.treasureRoom == true)
+            {
+                currentRoom.nDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+            }
+        }
+        if (currentRoom.South == null)
+        {
+            currentRoom.sDoor.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            currentRoom.sDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.sDoor.GetComponent<Renderer>().enabled = true;
+            currentRoom.sDoor.GetComponent<SouthDoor>().SouthRoom = currentRoom.South;
+            if (currentRoom.South.treasureRoom == true)
+            {
+                currentRoom.sDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+            }
+        }
+        if (currentRoom.East == null)
+        {
+            currentRoom.eDoor.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            currentRoom.eDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.eDoor.GetComponent<Renderer>().enabled = true;
+            currentRoom.eDoor.GetComponent<EastDoor>().EastRoom = currentRoom.East;
+            if (currentRoom.East.treasureRoom == true)
+            {
+                currentRoom.eDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+            }
+        }
+        if (currentRoom.West == null)
+        {
+            currentRoom.wDoor.GetComponent<Renderer>().enabled = false;
+        }
+        else
+        {
+            currentRoom.wDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.wDoor.GetComponent<Renderer>().enabled = true;
+            currentRoom.wDoor.GetComponent<WestDoor>().WestRoom = currentRoom.West;
+            if (currentRoom.West.treasureRoom == true)
+            {
+                currentRoom.wDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
             }
         }
     }
@@ -183,29 +283,29 @@ public class Map : MonoBehaviour
         Room yMinRoom = null;
         foreach (Room room in rooms)
         {
-            if (room.Coordinates.x > xMax)
+            if (room.XCoord > xMax)
             {
-                xMax = room.Coordinates.x;
+                xMax = room.XCoord;
                 xMaxRoom = room;
             }
-            else if (room.Coordinates.x < xMin)
+            else if (room.XCoord < xMin)
             {
-                xMin = room.Coordinates.x;
+                xMin = room.XCoord;
                 xMinRoom = room;
             }
 
-            if (room.Coordinates.y > yMax)
+            if (room.YCoord > yMax)
             {
-                yMax = room.Coordinates.y;
+                yMax = room.YCoord;
                 yMaxRoom = room;
             }
-            else if (room.Coordinates.y < yMin)
+            else if (room.YCoord < yMin)
             {
-                yMin = room.Coordinates.y;
+                yMin = room.YCoord;
                 yMinRoom = room;
             }
         }
-        Room bossRoom = FindNextRoom(bossRoomPrefabs);
+        Room bossRoom = FindNextRoom(bRoomPreFabs);
 
         List<string> highLowXY = new List<string>();
 
@@ -274,7 +374,7 @@ public class Map : MonoBehaviour
         var randomSide = new System.Random();
         int sideIndex = randomSide.Next(query.Count());
 
-        currentRoom = query.Take(sideIndex) as Room;
+        currentRoom = query[sideIndex];
 
         return currentRoom;
     }

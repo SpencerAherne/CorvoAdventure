@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - ArmorStand
   - GelatinousCube
+  - Scroll
   layers:
   - Default
   - TransparentFX

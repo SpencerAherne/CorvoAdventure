@@ -860,8 +860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908f80921015cf44a91ea3b2031f8aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRoomPrefab: {fileID: 6992240021649218151, guid: 2981d17a4b8838343a65b046597a911a,
-    type: 3}
+  spawnRoomPrefab:
+  - {fileID: 6992240021649218151, guid: 2981d17a4b8838343a65b046597a911a, type: 3}
   bossRoomPrefabs:
   - {fileID: 8074382270104002642, guid: 4825020cfe18d36409129092f669479a, type: 3}
   treasureRoomPrefabs:
@@ -878,6 +878,8 @@ MonoBehaviour:
   - {fileID: 1721624589530364221, guid: e75635012e0063045943a9f6e2cc8538, type: 3}
   - {fileID: 864606006096783357, guid: 5e709769abde87f47a122aef088aca39, type: 3}
   - {fileID: 7613783668705502256, guid: 0172d7c81c21c65418aaf0c3d0b68b1c, type: 3}
+  treasureRoomMat: {fileID: 2100000, guid: cbf71af08fccbd54d806f017809d0436, type: 2}
+  closedDoorSprite: {fileID: 21300000, guid: c5d0471cd86557b4db0bdefd23154a55, type: 3}
 --- !u!4 &1511799125
 Transform:
   m_ObjectHideFlags: 0
