@@ -36,7 +36,6 @@ public class Goblin : MonoBehaviour
 
     public Transform player;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -158,6 +157,7 @@ public class Goblin : MonoBehaviour
             }
 
             GameObject clone = GameObject.Find("StonePool").GetComponent<ObjectPooler>().GetPooledObject();
+            clone.transform.parent = gameObject.transform;
             clone.transform.position = transform.position;
             Physics2D.IgnoreCollision(clone.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
             clone.transform.rotation = Quaternion.LookRotation(attackPoint);

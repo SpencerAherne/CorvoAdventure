@@ -13,7 +13,7 @@ public class GameplayManager : MonoBehaviour
     }
     #endregion
 
-    public Room currentRoom;
+    public Room CurrentRoom { get; set; }
     public delegate void RoomCleared();
     public static event RoomCleared OnRoomClear;
     
@@ -21,19 +21,15 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
 
-        //Figure out how to call map method
-        //spawn player in starting room
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        //keep track of current room for other components to check against.
         //Should only be called when a room has had enemies, but no longer does. Not sure if works as I intend, also need to make sure the current room is tracked properly.
-        if (currentRoom.enemiesInRoom.Count == 0)
+        if (CurrentRoom.enemiesInRoom.Count == 0)
         {
             OnRoomClear?.Invoke();
         }
     }
-
 }

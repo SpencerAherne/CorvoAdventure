@@ -30,13 +30,8 @@ public class Destroyable : MonoBehaviour
         objCurrentHealth -= damage;
         if (objCurrentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            loot.DestroyableLootRoll(gameObject);
+            Destroy(gameObject);
         }
     }
-
-    private void OnDisable()
-    {
-        loot.DestroyableLootRoll(gameObject);
-    }
-
 }

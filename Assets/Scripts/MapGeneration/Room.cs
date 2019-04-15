@@ -32,6 +32,7 @@ public class Room : MonoBehaviour
     public float YCoord { get; set; }
 
     public bool treasureRoom = false;
+    public bool bossRoom = false;
 
     [SerializeField]
     List<GameObject> objectsInRoom = new List<GameObject>();//Don't think is needed.
@@ -62,6 +63,11 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.activeInHierarchy)
+        {
+            GameplayManager.instance.CurrentRoom = gameObject.GetComponent<Room>();
+        }
+
         if (enemiesInRoom == null || enemiesInRoom.Count == 0)
         {
             if (nDoor.GetComponent<Renderer>().enabled == true && nDoor.GetComponent<SpriteRenderer>().sprite != openDoorSprite)

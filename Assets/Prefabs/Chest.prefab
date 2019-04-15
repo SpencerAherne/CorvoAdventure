@@ -129,6 +129,11 @@ MonoBehaviour:
     type: 3}
   PlayerSpeedPowerUp: {fileID: 1778882246513598, guid: a15d8c0ade28e8447b3f06e5e115569e,
     type: 3}
+  pickUpTime: 1.5
+  radius: 1.5
+  toHit:
+    serializedVersion: 2
+    m_Bits: 3891
 --- !u!50 &50681103976706642
 Rigidbody2D:
   serializedVersion: 4

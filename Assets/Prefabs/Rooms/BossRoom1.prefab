@@ -912,9 +912,11 @@ MonoBehaviour:
   lootSpawn: {fileID: 3816209425339950192}
   openDoorSprite: {fileID: 21300000, guid: 08350d0eef5e5a54f956b90b41bafbf0, type: 3}
   treasureRoom: 0
+  bossRoom: 1
   objectsInRoom: []
   itemsInRoom: []
-  enemiesInRoom: []
+  enemiesInRoom:
+  - {fileID: 8914288095875192793}
 --- !u!1 &8379427395309439536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7639849f9adebc0498ef99773ed8282d, type: 3}
+--- !u!1 &8914288095875192793 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6013908230720812801, guid: 7639849f9adebc0498ef99773ed8282d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2936444157252280536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8914288095875192773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6013908230720812829, guid: 7639849f9adebc0498ef99773ed8282d,

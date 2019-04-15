@@ -19,7 +19,9 @@ public class Map : MonoBehaviour
     public List<GameObject> treasureRoomPrefabs;
     List<Room> roomsAdded;
     public List<GameObject> preFabs;
-    public Material treasureRoomMat;
+    public Material doorMat;
+    public Material treasureDoorMat;
+    public Material bossDoorMat;
     public Sprite closedDoorSprite;
 
     private void Start()
@@ -216,57 +218,97 @@ public class Map : MonoBehaviour
         if (currentRoom.North == null)
         {
             currentRoom.nDoor.GetComponent<Renderer>().enabled = false;
+            currentRoom.nDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else
         {
             currentRoom.nDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.nDoor.GetComponent<BoxCollider2D>().isTrigger = false;
             currentRoom.nDoor.GetComponent<Renderer>().enabled = true;
             currentRoom.nDoor.GetComponent<NorthDoor>().NorthRoom = currentRoom.North;
             if (currentRoom.North.treasureRoom == true)
             {
-                currentRoom.nDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+                currentRoom.nDoor.GetComponent<SpriteRenderer>().material = treasureDoorMat;
+            }
+            else if (currentRoom.North.bossRoom == true)
+            {
+                currentRoom.nDoor.GetComponent<SpriteRenderer>().material = bossDoorMat;
+            }
+            else 
+            {
+                currentRoom.nDoor.GetComponent<SpriteRenderer>().material = doorMat;
             }
         }
         if (currentRoom.South == null)
         {
             currentRoom.sDoor.GetComponent<Renderer>().enabled = false;
+            currentRoom.sDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else
         {
             currentRoom.sDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.sDoor.GetComponent<BoxCollider2D>().isTrigger = false;
             currentRoom.sDoor.GetComponent<Renderer>().enabled = true;
             currentRoom.sDoor.GetComponent<SouthDoor>().SouthRoom = currentRoom.South;
             if (currentRoom.South.treasureRoom == true)
             {
-                currentRoom.sDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+                currentRoom.sDoor.GetComponent<SpriteRenderer>().material = treasureDoorMat;
+            }
+            else if (currentRoom.South.bossRoom == true)
+            {
+                currentRoom.sDoor.GetComponent<SpriteRenderer>().material = bossDoorMat;
+            }
+            else
+            {
+                currentRoom.sDoor.GetComponent<SpriteRenderer>().material = doorMat;
             }
         }
         if (currentRoom.East == null)
         {
             currentRoom.eDoor.GetComponent<Renderer>().enabled = false;
+            currentRoom.eDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else
         {
             currentRoom.eDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.eDoor.GetComponent<BoxCollider2D>().isTrigger = false;
             currentRoom.eDoor.GetComponent<Renderer>().enabled = true;
             currentRoom.eDoor.GetComponent<EastDoor>().EastRoom = currentRoom.East;
             if (currentRoom.East.treasureRoom == true)
             {
-                currentRoom.eDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+                currentRoom.eDoor.GetComponent<SpriteRenderer>().material = treasureDoorMat;
+            }
+            else if (currentRoom.East.bossRoom == true)
+            {
+                currentRoom.eDoor.GetComponent<SpriteRenderer>().material = bossDoorMat;
+            }
+            else
+            {
+                currentRoom.eDoor.GetComponent<SpriteRenderer>().material = doorMat;
             }
         }
         if (currentRoom.West == null)
         {
             currentRoom.wDoor.GetComponent<Renderer>().enabled = false;
+            currentRoom.wDoor.GetComponent<BoxCollider2D>().isTrigger = false;
         }
         else
         {
             currentRoom.wDoor.GetComponent<SpriteRenderer>().sprite = closedDoorSprite;
+            currentRoom.wDoor.GetComponent<BoxCollider2D>().isTrigger = false;
             currentRoom.wDoor.GetComponent<Renderer>().enabled = true;
             currentRoom.wDoor.GetComponent<WestDoor>().WestRoom = currentRoom.West;
             if (currentRoom.West.treasureRoom == true)
             {
-                currentRoom.wDoor.GetComponent<SpriteRenderer>().material = treasureRoomMat;
+                currentRoom.wDoor.GetComponent<SpriteRenderer>().material = treasureDoorMat;
+            }
+            else if (currentRoom.West.bossRoom == true)
+            {
+                currentRoom.wDoor.GetComponent<SpriteRenderer>().material = bossDoorMat;
+            }
+            else
+            {
+                currentRoom.wDoor.GetComponent<SpriteRenderer>().material = doorMat;
             }
         }
     }

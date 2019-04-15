@@ -13,6 +13,7 @@ public class Chest : MonoBehaviour {
     public GameObject PlayerSpeedPowerUp;
     public float pickUpTime = 1.5f;
     public float radius = 1.5f;
+    public LayerMask toHit;
 
     // Use this for initialization
     void Start ()
@@ -41,33 +42,43 @@ public class Chest : MonoBehaviour {
 
     void SpawnPowerUp(Collision2D player)
     {
+        RaycastHit2D spawnClear;
+        Vector2 spawnPoint;
+
+        spawnPoint = (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius;
+        spawnClear = Physics2D.Linecast(gameObject.transform.position, spawnPoint, toHit);
+
         int roll = Random.Range(0, 5);
         if (roll == 0)
         {
-            GameObject powerUp = Instantiate(HPPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(HPPowerUp, spawnPoint, gameObject.transform.rotation);
+            powerUp.transform.parent = gameObject.transform.parent;
             StartCoroutine(SpawnDelay(powerUp));
         }
         else if (roll == 1)
         {
-            GameObject powerUp = Instantiate(DMGPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(DMGPowerUp, spawnPoint, gameObject.transform.rotation);
+            powerUp.transform.parent = gameObject.transform.parent;
             StartCoroutine(SpawnDelay(powerUp));
         }
         else if (roll == 2)
         {
-            GameObject powerUp = Instantiate(PlayerSpeedPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(PlayerSpeedPowerUp, spawnPoint, gameObject.transform.rotation);
+            powerUp.transform.parent = gameObject.transform.parent;
             StartCoroutine(SpawnDelay(powerUp));
         }
         else if (roll == 3)
         {
-            GameObject powerUp = Instantiate(RateOfFiePowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(RateOfFiePowerUp, spawnPoint, gameObject.transform.rotation);
+            powerUp.transform.parent = gameObject.transform.parent;
             StartCoroutine(SpawnDelay(powerUp));
         }
         else if (roll == 4)
         {
-            GameObject powerUp = Instantiate(ProjectileSpeedPowerUp, (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius, gameObject.transform.rotation);
+            GameObject powerUp = Instantiate(ProjectileSpeedPowerUp, spawnPoint, gameObject.transform.rotation);
+            powerUp.transform.parent = gameObject.transform.parent;
             StartCoroutine(SpawnDelay(powerUp));
         }
-
     }
 
     IEnumerator SpawnDelay(GameObject powerUp)
