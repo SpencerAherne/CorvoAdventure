@@ -100,7 +100,7 @@ MonoBehaviour:
   speed: 3
   stillTime: 3
   debuffDuration: 3
-  slowRate: 0.4
+  slowRate: 0.5
 --- !u!50 &6013908230720812831
 Rigidbody2D:
   serializedVersion: 4

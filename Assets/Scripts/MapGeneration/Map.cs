@@ -371,7 +371,6 @@ public class Map : MonoBehaviour
             highLowXY.Add("yMin");
         }
 
-
         var randomBossRoom = new System.Random();
         int bossRoomIndex = randomBossRoom.Next(highLowXY.Count);
         string bossRoomLoc = highLowXY[bossRoomIndex];

@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public float playerProjectileSpeed;
     public Room currentRoom;
 
+    public bool isDebuffed = false;
+
     public GameObject arcanePulse;
 
     private void Awake()
@@ -37,6 +39,11 @@ public class Player : MonoBehaviour
     {
         playerMovement.Move();
         UseArcanePulse();
+
+        if (GelatinousCubeBoss.instance.trail.bounds.Contains(transform.position) && isDebuffed == false)
+        {
+            StartCoroutine(SlowDebuff());
+        }
     }
 
     void FixedUpdate ()
@@ -67,5 +74,14 @@ public class Player : MonoBehaviour
             clone.SetActive(true);
             arcanePulseCount -= 1;
         }
+    }
+
+    public IEnumerator SlowDebuff()
+    {
+        isDebuffed = true;
+        playerSpeed = playerSpeed * GelatinousCubeBoss.instance.slowRate;
+        yield return new WaitForSecondsRealtime(GelatinousCubeBoss.instance.debuffDuration);
+        playerSpeed = playerSpeed / GelatinousCubeBoss.instance.slowRate;
+        isDebuffed = false;
     }
 }

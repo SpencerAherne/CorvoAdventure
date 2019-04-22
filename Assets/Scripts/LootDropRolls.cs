@@ -17,7 +17,7 @@ public class LootDropRolls : MonoBehaviour
         Key = GameObject.Find("KeyPool");
         Potion = GameObject.Find("PotionPool");
         Gem = GameObject.Find("GemPool");
-        Chest = GameObject.Find("Chest");
+        Chest = GameObject.Find("ChestPool");
         Scroll = GameObject.Find("ScrollPool");
     }
 

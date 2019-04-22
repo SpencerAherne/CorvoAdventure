@@ -48,6 +48,12 @@ public class Chest : MonoBehaviour {
         spawnPoint = (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius;
         spawnClear = Physics2D.Linecast(gameObject.transform.position, spawnPoint, toHit);
 
+        while (spawnClear != false)
+        {
+            spawnPoint = (Vector2)gameObject.transform.position + Random.insideUnitCircle * radius;
+            spawnClear = Physics2D.Linecast(gameObject.transform.position, spawnPoint, toHit);
+        }
+
         int roll = Random.Range(0, 5);
         if (roll == 0)
         {

@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 425996467}
   - component: {fileID: 425996468}
   - component: {fileID: 425996469}
+  - component: {fileID: 425996470}
   m_Layer: 9
   m_Name: GamePlayManager
   m_TagString: Untagged
@@ -364,6 +365,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b766648087a119949a56442668b2fb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &425996470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425996466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59eae74f570646498467a3d60e3a889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -688,6 +701,7 @@ MonoBehaviour:
   playerFireRate: 2
   playerProjectileSpeed: 5
   currentRoom: {fileID: 0}
+  isDebuffed: 0
   arcanePulse: {fileID: 5338979325934149134, guid: 61c94660248a2524f861a77f0e1a762d,
     type: 3}
 --- !u!1 &1280990215

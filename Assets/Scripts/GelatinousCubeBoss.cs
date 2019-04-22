@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GelatinousCubeBoss : MonoBehaviour
 {
+    #region Singleton
+    public static GelatinousCubeBoss instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     public float maxHealth;
     float curHealth;
     public float damage;
@@ -12,10 +20,10 @@ public class GelatinousCubeBoss : MonoBehaviour
     bool isMoving = false;
     public float stillTime;
     Vector2 endPos;
-    TrailRenderer trail;
+    public TrailRenderer trail;
     public float debuffDuration = 3f;
-    public float slowRate = .8f;
-    bool isDebuffed = false;
+    public float slowRate = .5f;
+    Room room;
 
 
     // Start is called before the first frame update
@@ -24,14 +32,12 @@ public class GelatinousCubeBoss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         curHealth = maxHealth;
         trail = GetComponent<TrailRenderer>();
+        room = GetComponentInParent<Room>();
     }
 
     private void Update()
     {
-        if (trail.bounds.Contains(Player.instance.transform.position) && isDebuffed == false)
-        {
-            StartCoroutine(SlowDebuff());
-        }
+
     }
 
     //If boss runs into wall, then picks a second location in which they never leave contact with the wall, it doesn't pick another point to move to.
@@ -67,15 +73,6 @@ public class GelatinousCubeBoss : MonoBehaviour
         float yPos = Random.Range(yMin, yMax);
         Vector2 endPos = new Vector2(xPos, yPos);
         return endPos;
-    }
-
-    IEnumerator SlowDebuff()
-    {
-        isDebuffed = true;
-        Player.instance.playerSpeed = Player.instance.playerSpeed * slowRate;
-        yield return new WaitForSecondsRealtime(debuffDuration);
-        Player.instance.playerSpeed = Player.instance.playerSpeed / slowRate;
-        isDebuffed = false;
     }
 
     IEnumerator StopMoving()//Doesn't actually stop the boss. Ask if this feels right or not.
@@ -129,6 +126,7 @@ public class GelatinousCubeBoss : MonoBehaviour
         if (curHealth <= 0)
         {
             Destroy(gameObject);
+            room.enemiesInRoom.Remove(gameObject);
             //Boss loot would drop here if I decide to add it
         }
     }

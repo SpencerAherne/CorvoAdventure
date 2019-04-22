@@ -177,11 +177,8 @@ public class Goblin : MonoBehaviour
         if (curHealth <= 0)
         {
             gameObject.SetActive(false);
+            room.enemiesInRoom.Remove(gameObject);
         }
     }
 
-    private void OnDisable()
-    {
-        room.enemiesInRoom.Remove(gameObject);
-    }
 }
