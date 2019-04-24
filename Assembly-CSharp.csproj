@@ -89,6 +89,11 @@
     <Compile Include="Assets\Scripts\SpellProjectile.cs" />
     <Compile Include="Assets\Scripts\StoneProjectile.cs" />
     <Compile Include="Assets\Scripts\TestingScript.cs" />
+    <Compile Include="Assets\Scripts\Trophy.cs" />
+    <Compile Include="Assets\Scripts\UI\Health.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryText.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI\VictoryScreenText.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/frona/Documents/GitHubStuff/CorvoAdventure/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

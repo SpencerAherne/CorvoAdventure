@@ -27,6 +27,7 @@ public class LootDropRolls : MonoBehaviour
         if (roll <= 5)
         {
             GameObject clone = Key.GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject.Find("KeyPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
             clone.transform.parent = gameObject.transform.parent;
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
@@ -34,6 +35,7 @@ public class LootDropRolls : MonoBehaviour
         else if (roll > 5 && roll <= 10)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject.Find("PotionPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
             clone.transform.parent = gameObject.transform.parent;
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
@@ -41,6 +43,7 @@ public class LootDropRolls : MonoBehaviour
         else if (roll > 10 && roll <= 15)
         {
             GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject.Find("ScrollPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
             clone.transform.parent = gameObject.transform.parent;
             clone.transform.position = gameObject.transform.position;
             clone.SetActive(true);
@@ -48,6 +51,7 @@ public class LootDropRolls : MonoBehaviour
         else if (roll > 15 && roll <= 25)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
+            GameObject.Find("GemPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
             clone.transform.parent = gameObject.transform.parent;
             clone.transform.position = gameObject.transform.position;
         }
@@ -65,35 +69,40 @@ public class LootDropRolls : MonoBehaviour
         if (roll <= 5)
         {
             GameObject clone = Chest.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.parent = lootspawn.transform;
+            GameObject.Find("ChestPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
+            clone.transform.parent = lootspawn.transform.parent;
             clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 5 && roll <= 15)
         {
             GameObject clone = Key.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.parent = lootspawn.transform;
+            GameObject.Find("KeyPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
+            clone.transform.parent = lootspawn.transform.parent;
             clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 15 && roll <= 25)
         {
             GameObject clone = Scroll.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.parent = lootspawn.transform;
+            GameObject.Find("ScrollPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
+            clone.transform.parent = lootspawn.transform.parent;
             clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 25 && roll <= 40)
         {
             GameObject clone = Potion.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.parent = lootspawn.transform;
+            GameObject.Find("PotionPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
+            clone.transform.parent = lootspawn.transform.parent;
             clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }
         else if (roll > 40 && roll <= 70)
         {
             GameObject clone = Gem.GetComponent<ObjectPooler>().GetPooledObject();
-            clone.transform.parent = lootspawn.transform;
+            GameObject.Find("GemPool").GetComponent<ObjectPooler>().pooledObjects.Remove(clone);
+            clone.transform.parent = lootspawn.transform.parent;
             clone.transform.position = lootspawn.transform.position;
             clone.SetActive(true);
         }

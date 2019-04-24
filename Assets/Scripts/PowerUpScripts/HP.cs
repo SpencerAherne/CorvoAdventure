@@ -10,7 +10,7 @@ public class HP : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Player.instance.playerMaxHealth += healthIncrease;
+            Player.instance.playerTotalHealth += healthIncrease;
             Player.instance.playerCurHealth += healthIncrease;
             Destroy(gameObject);
         }

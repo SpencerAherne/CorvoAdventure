@@ -96,11 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 25
-  damage: 2
+  damage: 1
   speed: 3
   stillTime: 3
+  trail: {fileID: 0}
   debuffDuration: 3
   slowRate: 0.5
+  trophy: {fileID: 3506273295250002450, guid: 8cb955db9f5b482419a7c988815785d7, type: 3}
 --- !u!50 &6013908230720812831
 Rigidbody2D:
   serializedVersion: 4

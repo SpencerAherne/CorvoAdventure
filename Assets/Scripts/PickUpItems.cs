@@ -17,7 +17,7 @@ public class PickUpItems : MonoBehaviour {
                     gameObject.SetActive(false);
                     break;
                 case "Potion":
-                    if (Player.instance.playerCurHealth < Player.instance.playerMaxHealth)
+                    if (Player.instance.playerCurHealth < Player.instance.playerTotalHealth)
                     {
                         Player.instance.playerCurHealth += healthHealed;
                         gameObject.SetActive(false);

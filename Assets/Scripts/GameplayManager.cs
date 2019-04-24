@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -16,11 +17,18 @@ public class GameplayManager : MonoBehaviour
     public Room CurrentRoom { get; set; }
     public delegate void RoomCleared();
     public static event RoomCleared OnRoomClear;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    //serialization to keep track of these numbers and use them on victory screen.
+    public int bossKillCount;
+    public int totalGemCount;
+
+    public GameObject gameOverScreen;
+    public GameObject victoryScreen;
+
+    private void Start()
+    {
+        gameOverScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -31,5 +39,20 @@ public class GameplayManager : MonoBehaviour
         {
             OnRoomClear?.Invoke();
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

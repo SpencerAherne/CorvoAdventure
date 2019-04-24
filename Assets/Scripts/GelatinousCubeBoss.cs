@@ -24,6 +24,7 @@ public class GelatinousCubeBoss : MonoBehaviour
     public float debuffDuration = 3f;
     public float slowRate = .5f;
     Room room;
+    public GameObject trophy;
 
 
     // Start is called before the first frame update
@@ -125,6 +126,9 @@ public class GelatinousCubeBoss : MonoBehaviour
         curHealth -= damage;
         if (curHealth <= 0)
         {
+            GameObject clone = Instantiate(trophy);
+            clone.transform.position = gameObject.transform.parent.position;
+            clone.transform.parent = gameObject.transform.parent;
             Destroy(gameObject);
             room.enemiesInRoom.Remove(gameObject);
             //Boss loot would drop here if I decide to add it

@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public int gemCount;
     public int arcanePulseCount;
     public float playerMaxHealth;
+    public float playerTotalHealth;
+    public float playerStartHealth;
     public float playerCurHealth;
     public float playerSpeed = 10f;
     public float playerDamage;
@@ -31,7 +33,9 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        playerCurHealth = playerMaxHealth;
+        playerMaxHealth = 10f;
+        playerTotalHealth = playerStartHealth;
+        playerCurHealth = playerStartHealth;
         playerMovement = GetComponent<PlayerMovement>();
 	}
 
@@ -39,6 +43,11 @@ public class Player : MonoBehaviour
     {
         playerMovement.Move();
         UseArcanePulse();
+
+        if (playerTotalHealth > playerMaxHealth)
+        {
+            playerTotalHealth = playerMaxHealth;
+        }
 
         if (GelatinousCubeBoss.instance.trail.bounds.Contains(transform.position) && isDebuffed == false)
         {
@@ -48,9 +57,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate ()
     {
-        if (playerCurHealth > playerMaxHealth)
+        if (playerCurHealth > playerTotalHealth)
         {
-            playerCurHealth = playerMaxHealth;
+            playerCurHealth = playerTotalHealth;
         }
 	}
 
@@ -59,7 +68,8 @@ public class Player : MonoBehaviour
         playerCurHealth -= damage;
         if (playerCurHealth <= 0)
         {
-            //kill player/end game
+            Time.timeScale = 0f;
+            GameplayManager.instance.gameOverScreen.SetActive(true);
         }
         //give invul frames
     }
